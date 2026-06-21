@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albanija 2025 — 3 dienų kelionė</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      --bg:           #0d0908;
+      --surface:      #1a1210;
+      --surface-2:    #261a16;
+      --surface-3:    #2e2019;
+      --border:       rgba(255,255,255,0.07);
+      --border-light: rgba(255,255,255,0.12);
+      --text:         #ede0d8;
+      --text-muted:   #9a7a70;
+      --text-dim:     #6b4a40;
+      --accent:       #c9493a;
+      --accent-dim:   rgba(201,73,58,0.15);
+      --gold:         #c9a84c;
+      --gold-dim:     rgba(201,168,76,0.15);
+      --teal:         #3a8c7c;
+      --teal-dim:     rgba(58,140,124,0.15);
+      --blue:         #4a6fa5;
+      --blue-dim:     rgba(74,111,165,0.15);
+      --green:        #5a9c6a;
+      --green-dim:    rgba(90,156,106,0.15);
+      --slate:        #6a7a9a;
+      --slate-dim:    rgba(106,122,154,0.15);
+      --danger:       #c95a3a;
+      --danger-dim:   rgba(201,90,58,0.12);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --radius-sm:    6px;
+      --radius-md:    12px;
+      --radius-lg:    18px;
+      --radius-xl:    24px;
+      --shadow:       0 4px 24px rgba(0,0,0,0.5);
+      --shadow-lg:    0 8px 48px rgba(0,0,0,0.6);
+      --nav-h:        64px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .svg-filters { position: absolute; width: 0; height: 0; }
+
+    /* Nav */
+    #main-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+      border-bottom: 1px solid transparent;
+    }
+    #main-nav.scrolled {
+      background: rgba(13,9,8,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-color: var(--border);
+    }
+    .nav-brand {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0.25rem;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius-sm);
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border-light);
+      color: var(--text);
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0.35rem 0.6rem;
+      border-radius: var(--radius-sm);
+    }
+    @media (max-width: 680px) {
+      .nav-toggle { display: flex; align-items: center; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: var(--nav-h);
+        left: 0; right: 0;
+        flex-direction: column;
+        background: rgba(13,9,8,0.97);
+        backdrop-filter: blur(14px);
+        padding: 1rem;
+        gap: 0.25rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 0.75rem 1rem; font-size: 1rem; }
+    }
+
+    /* Hero */
+    #hero {
+      position: relative;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg,
+          #0a0504 0%,
+          #160a07 25%,
+          #1e0e09 50%,
+          #1a0c08 65%,
+          #110806 80%,
+          #080504 100%
+        );
+      filter: url(#noise);
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 30%, rgba(201,73,58,0.16) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 20% 60%, rgba(201,168,76,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 80% 70%, rgba(58,140,124,0.06) 0%, transparent 60%);
+    }
+    /* Albanian mountains silhouette */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 45%;
+      background: linear-gradient(180deg, #060403 0%, #080504 100%);
+      clip-path: polygon(
+        0% 100%,
+        0% 80%,
+        3% 68%,
+        6% 75%,
+        9% 58%,
+        12% 70%,
+        15% 45%,
+        18% 62%,
+        21% 38%,
+        24% 52%,
+        27% 30%,
+        30% 44%,
+        33% 22%,
+        36% 36%,
+        39% 18%,
+        42% 30%,
+        45% 12%,
+        48% 25%,
+        51% 8%,
+        54% 20%,
+        57% 28%,
+        60% 15%,
+        63% 32%,
+        66% 20%,
+        70% 38%,
+        74% 26%,
+        78% 44%,
+        82% 34%,
+        86% 50%,
+        90% 40%,
+        94% 55%,
+        97% 46%,
+        100% 58%,
+        100% 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      padding: 2rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 12vw, 8rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-shadow: 0 4px 40px rgba(0,0,0,0.6);
+      margin-bottom: 1.25rem;
+    }
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(201,73,58,0.4);
+    }
+    .hero-cta:hover {
+      background: #d95f50;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,73,58,0.5);
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    @media (min-width: 640px) { .stats-bar { grid-template-columns: repeat(6, 1fr); } }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 0.75rem;
+      border-right: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .stat:last-child { border-right: none; }
+    .stat:nth-child(3) { border-right: none; }
+    @media (min-width: 640px) { .stat:nth-child(3) { border-right: 1px solid var(--border); } }
+    .stat:hover { background: var(--surface-2); }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.25rem;
+      text-align: center;
+    }
+
+    /* Section */
+    section { padding: 4rem 0; }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .section-lead {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+    }
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border-light), transparent);
+      margin: 0;
+    }
+
+    /* Animate on scroll */
+    .aos {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .aos.visible { opacity: 1; transform: none; }
+    .aos-delay-1 { transition-delay: 0.1s; }
+    .aos-delay-2 { transition-delay: 0.2s; }
+    .aos-delay-3 { transition-delay: 0.3s; }
+
+    /* Flight cards */
+    .flights-grid {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 640px) { .flights-grid { grid-template-columns: 1fr 1fr; } }
+    .flight-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .flight-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+    }
+    .flight-card.return::before {
+      background: var(--teal);
+    }
+    .flight-direction {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+    }
+    .flight-route {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .flight-arrow { color: var(--accent); }
+    .flight-card.return .flight-arrow { color: var(--teal); }
+    .flight-times {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .flight-time {
+      font-size: 1.6rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--text);
+      line-height: 1;
+    }
+    .flight-time-iata {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+    .flight-duration-line {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    .flight-duration-text {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .flight-duration-bar {
+      width: 100%;
+      height: 1px;
+      background: var(--border-light);
+      position: relative;
+    }
+    .flight-duration-bar::after {
+      content: '✈';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 0.7rem;
+      background: var(--surface);
+      padding: 0 4px;
+      color: var(--text-muted);
+    }
+    .flight-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .flight-chip {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .flight-price {
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .flight-price span { font-size: 0.8rem; font-weight: 400; color: var(--text-muted); }
+
+    /* Rental car card */
+    .car-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+    .car-card-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .car-card-sub {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+    .car-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    @media (min-width: 560px) { .car-info-grid { grid-template-columns: repeat(3, 1fr); } }
+    .car-info-item { display: flex; flex-direction: column; }
+    .car-info-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); }
+    .car-info-value { font-size: 0.9rem; color: var(--text); font-weight: 500; }
+    .car-tips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .car-tip-chip {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Day cards */
+    #itinerary { padding-top: 3rem; }
+    .days-container { display: flex; flex-direction: column; gap: 1rem; }
+
+    .day-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      border-top: 3px solid var(--day-accent, var(--accent));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .day-card:hover { box-shadow: var(--shadow-lg); }
+
+    .day-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .day-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 52px;
+    }
+    .day-emoji { font-size: 1.5rem; line-height: 1; }
+    .day-num {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      margin-top: 0.2rem;
+      white-space: nowrap;
+    }
+    .day-meta { flex: 1; }
+    .day-meta h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .day-meta .day-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.1rem; }
+    .day-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      cursor: pointer;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .day-toggle:hover { background: var(--surface-2); color: var(--text); }
+
+    .day-body {
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .day-body-inner { padding: 0 1.5rem 1.5rem; }
+
+    /* Alert banners */
+    .alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+    }
+    .alert--warning {
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: #d4b46a;
+    }
+    .alert--danger {
+      background: var(--danger-dim);
+      border: 1px solid rgba(201,90,58,0.3);
+      color: #d4876a;
+    }
+    .alert--info {
+      background: var(--blue-dim);
+      border: 1px solid rgba(74,111,165,0.3);
+      color: #7a9ac5;
+    }
+    .alert--teal {
+      background: var(--teal-dim);
+      border: 1px solid rgba(58,140,124,0.3);
+      color: #6abcac;
+    }
+
+    /* Timeline */
+    .timeline {
+      list-style: none;
+      border-left: 2px solid var(--border-light);
+      padding-left: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .timeline li {
+      position: relative;
+      padding: 0.4rem 0;
+      display: flex;
+      gap: 0.75rem;
+      align-items: baseline;
+    }
+    .timeline li::before {
+      content: '';
+      position: absolute;
+      left: -1.4rem;
+      top: 0.65rem;
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .tl-time {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.8rem;
+      font-variant-numeric: tabular-nums;
+      min-width: 3.2rem;
+      flex-shrink: 0;
+    }
+    .tl-text { font-size: 0.875rem; color: var(--text); }
+
+    /* Info chips */
+    .day-info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .info-chip {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.3rem 0.7rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .info-chip.tip {
+      background: var(--gold-dim);
+      border-color: rgba(201,168,76,0.2);
+      color: #c4a060;
+    }
+    .info-chip.warn {
+      background: var(--danger-dim);
+      border-color: rgba(201,90,58,0.25);
+      color: #d48070;
+    }
+
+    /* Spots grid */
+    .spots-grid {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (min-width: 560px) { .spots-grid { grid-template-columns: repeat(2, 1fr); } }
+    .spot-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .spot-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .spot-emoji { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+    .spot-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .spot-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* Budget */
+    .budget-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+    }
+    .budget-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .budget-table thead tr { background: var(--surface-2); }
+    .budget-table th {
+      padding: 0.85rem 1.25rem;
+      text-align: left;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+    }
+    .budget-table td {
+      padding: 0.85rem 1.25rem;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+    .budget-table tbody tr:last-child td { border-bottom: none; }
+    .budget-table tbody tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+    .budget-table tfoot tr { background: rgba(201,73,58,0.08); }
+    .budget-table tfoot td {
+      font-weight: 700;
+      color: var(--accent);
+      border-top: 1px solid rgba(201,73,58,0.2);
+      border-bottom: none;
+    }
+    .budget-note { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.75rem; }
+
+    /* Packing */
+    #packing { background: var(--surface); }
+    .packing-grid {
+      display: grid;
+      gap: 0.6rem;
+    }
+    @media (min-width: 560px) { .packing-grid { grid-template-columns: repeat(2, 1fr); } }
+    .pack-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1rem;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .pack-item:hover { background: var(--surface-2); }
+    .pack-item input[type="checkbox"] { display: none; }
+    .checkmark {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border-light);
+      border-radius: 5px;
+      flex-shrink: 0;
+      position: relative;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .pack-item input:checked ~ .checkmark {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .pack-item input:checked ~ .checkmark::after {
+      content: '';
+      position: absolute;
+      left: 4px; top: 1px;
+      width: 7px; height: 11px;
+      border: 2px solid #fff;
+      border-top: none;
+      border-left: none;
+      transform: rotate(42deg);
+    }
+    .pack-item input:checked ~ .pack-text {
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+    .pack-text { font-size: 0.875rem; }
+
+    /* Contacts */
+    .contacts-grid {
+      display: grid;
+      gap: 0.75rem;
+    }
+    @media (min-width: 560px) { .contacts-grid { grid-template-columns: repeat(2, 1fr); } }
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-card:hover { border-color: var(--border-light); background: var(--surface-2); }
+    .contact-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .contact-info { display: flex; flex-direction: column; gap: 0.1rem; }
+    .contact-name { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+    .contact-detail { font-size: 0.8rem; color: var(--accent); }
+    .contact-sub { font-size: 0.75rem; color: var(--text-dim); }
+
+    /* Footer */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+    .footer-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .footer-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem; }
+    .footer-tagline { font-size: 1.25rem; margin-top: 1.5rem; }
+
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+<svg class="svg-filters" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="noise" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noiseOut"/>
+      <feColorMatrix type="saturate" values="0" in="noiseOut" result="grayNoise"/>
+      <feBlend in="SourceGraphic" in2="grayNoise" mode="overlay" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- Nav -->
+<nav id="main-nav">
+  <div class="nav-brand">Albanija '25</div>
+  <ul class="nav-links">
+    <li><a href="#flights">Skrydžiai</a></li>
+    <li><a href="#itinerary">Dienotvarkė</a></li>
+    <li><a href="#budget">Biudžetas</a></li>
+    <li><a href="#packing">Ką paimti</a></li>
+    <li><a href="#contacts">Kontaktai</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Meniu">☰</button>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Kelionės planas · Spalio 30 – Lapkričio 2, 2025 · Lietuva → Albanija 🇦🇱</p>
+    <h1 class="hero-title">Albanija</h1>
+    <p class="hero-subtitle">3 dienų kelionė · 4 asmenų kompanija<br>Tirana · Berat · Durrës · Adrijos jūra</p>
+    <a href="#itinerary" class="hero-cta">Žiūrėti planą ↓</a>
+  </div>
+  <div class="hero-scroll">↓ slinkite</div>
+</section>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+  <div class="stat"><span class="stat-value">3</span><span class="stat-label">Dienų</span></div>
+  <div class="stat"><span class="stat-value">4</span><span class="stat-label">Žmonės</span></div>
+  <div class="stat"><span class="stat-value">306</span><span class="stat-label">PLN skrydžiai</span></div>
+  <div class="stat"><span class="stat-value">2h</span><span class="stat-label">Skrydis</span></div>
+  <div class="stat"><span class="stat-value">~450</span><span class="stat-label">km iki WAW</span></div>
+  <div class="stat"><span class="stat-value">UNESCO</span><span class="stat-label">Berat miestas</span></div>
+</div>
+
+<!-- Flights -->
+<section id="flights">
+  <div class="container">
+    <h2 class="section-title aos">Skrydžiai</h2>
+    <p class="section-lead aos">Ryanair (Buzz) · Varšuva ↔ Tirana · Viso 306,00 PLN per asmenį.</p>
+    <div class="flights-grid">
+      <div class="flight-card aos">
+        <div class="flight-direction">Išvykimas · Spalio 30, Penktadienis</div>
+        <div class="flight-route">
+          <span>Varšuva</span>
+          <span class="flight-arrow">→</span>
+          <span>Tirana</span>
+        </div>
+        <div class="flight-times">
+          <div>
+            <div class="flight-time">18:30</div>
+            <div class="flight-time-iata">WAW · Chopin</div>
+          </div>
+          <div class="flight-duration-line">
+            <div class="flight-duration-text">2 val.</div>
+            <div class="flight-duration-bar"></div>
+          </div>
+          <div>
+            <div class="flight-time">20:30</div>
+            <div class="flight-time-iata">TIA · Rinas</div>
+          </div>
+        </div>
+        <div class="flight-meta">
+          <span class="flight-chip">FR 6809</span>
+          <span class="flight-chip">Buzz (Ryanair)</span>
+          <span class="flight-chip">Basic</span>
+        </div>
+        <div class="flight-price">153,00 PLN <span>/ asmeniui</span></div>
+      </div>
+
+      <div class="flight-card return aos aos-delay-1">
+        <div class="flight-direction">Grįžimas · Lapkričio 2, Pirmadienis</div>
+        <div class="flight-route">
+          <span>Tirana</span>
+          <span class="flight-arrow" style="color:var(--teal)">→</span>
+          <span>Varšuva</span>
+        </div>
+        <div class="flight-times">
+          <div>
+            <div class="flight-time">19:05</div>
+            <div class="flight-time-iata">TIA · Rinas</div>
+          </div>
+          <div class="flight-duration-line">
+            <div class="flight-duration-text">2 val. 5 min.</div>
+            <div class="flight-duration-bar"></div>
+          </div>
+          <div>
+            <div class="flight-time">21:10</div>
+            <div class="flight-time-iata">WAW · Chopin</div>
+          </div>
+        </div>
+        <div class="flight-meta">
+          <span class="flight-chip">FR 6810</span>
+          <span class="flight-chip">Buzz (Ryanair)</span>
+          <span class="flight-chip">Basic</span>
+        </div>
+        <div class="flight-price" style="color:var(--teal)">183,00 PLN <span>/ asmeniui</span></div>
+      </div>
+    </div>
+
+    <div class="alert alert--warning aos">
+      ⚠️ <strong>Registracija:</strong> Online registracija prie Ryanair / Buzz laikoma privaloma — tik rankiniai bagažas iki 40×20×25 cm įtrauktas. Papildomam bagažui reikia permokėti iš anksto!
+    </div>
+
+    <div class="car-card aos mt-2">
+      <div class="car-card-title">🚗 Automobilio nuoma Albanijoje</div>
+      <div class="car-card-sub">Rekomenduojama nuomotis Tiranoje — geriausios kainos ir pasirinkimas. 4 žmonėms tinka kompaktinis arba vidutinis automobilis.</div>
+      <div class="car-info-grid">
+        <div class="car-info-item"><span class="car-info-label">Pasiėmimas</span><span class="car-info-value">TIA oro uostas</span></div>
+        <div class="car-info-item"><span class="car-info-label">Grąžinimas</span><span class="car-info-value">TIA oro uostas</span></div>
+        <div class="car-info-item"><span class="car-info-label">Trukmė</span><span class="car-info-value">3 dienos</span></div>
+        <div class="car-info-item"><span class="car-info-label">Apytikslė kaina</span><span class="car-info-value">30–50 € / dienai</span></div>
+        <div class="car-info-item"><span class="car-info-label">Rekomenduojama</span><span class="car-info-value">Rentalcars / Discovercars</span></div>
+        <div class="car-info-item"><span class="car-info-label">Vairavimas</span><span class="car-info-value">Dešinioji pusė 🇦🇱</span></div>
+      </div>
+      <div class="car-tips">
+        <span class="car-tip-chip">🪪 Reikia tarptautinio vairuotojo pažymėjimo</span>
+        <span class="car-tip-chip">💳 Depozitas kredito kortele</span>
+        <span class="car-tip-chip">⛽ Kuras pigesnis nei Lietuvoje (~1,3 €/L)</span>
+        <span class="car-tip-chip">🛣️ Keliai tarp miestų pakankamos kokybės</span>
+        <span class="car-tip-chip">📵 Google Maps veikia puikiai</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Itinerary -->
+<section id="itinerary">
+  <div class="container">
+    <h2 class="section-title aos">Dienotvarkė</h2>
+    <p class="section-lead aos">Diena po dienos — nuo Kauno iki Albanijos ir atgal.</p>
+    <div class="days-container">
+
+      <!-- Day 0 -->
+      <article class="day-card aos" style="--day-accent: var(--slate)">
+        <div class="day-card-header">
+          <div class="day-badge"><span class="day-emoji">🚗✈️</span><span class="day-num">0 diena</span></div>
+          <div class="day-meta">
+            <h3>Spalio 30 · Penktadienis</h3>
+            <p class="day-subtitle">Kaunas → Varšuva → Tirana</p>
+          </div>
+          <button class="day-toggle" aria-expanded="true">▲</button>
+        </div>
+        <div class="day-body">
+          <div class="day-body-inner">
+            <div class="alert alert--warning">⚠️ <strong>SVARBU:</strong> Varšuvos oro uostas (WAW) yra Okęcie rajone. Į oro uostą reikia atvykti likus 2 val. — t.y. iki 16:30. Iš Kauno važiuokite ne vėliau kaip 11:30–12:00!</div>
+            <ul class="timeline">
+              <li><span class="tl-time">11:30</span><span class="tl-text">Išvykimas iš Kauno automobiliu</span></li>
+              <li><span class="tl-time">13:00</span><span class="tl-text">Pietūs sustojimas pakeliui (Suvalkai / Seinai)</span></li>
+              <li><span class="tl-time">16:00</span><span class="tl-text">Atvykimas į Varšuvos Chopin oro uostą (WAW)</span></li>
+              <li><span class="tl-time">16:00</span><span class="tl-text">Registracija, bagažo patikrinimas, saugumo kontrolė</span></li>
+              <li><span class="tl-time">18:30</span><span class="tl-text">✈️ Išskridimas · FR 6809 · WAW → TIA</span></li>
+              <li><span class="tl-time">20:30</span><span class="tl-text">Atvykimas į Tiranę — Rinas oro uostas 🇦🇱</span></li>
+              <li><span class="tl-time">21:00</span><span class="tl-text">Automobilio nuomos pasiėmimas oro uoste</span></li>
+              <li><span class="tl-time">21:30</span><span class="tl-text">Atvykimas į viešbutį Tiranoje (~15 min nuo oro uosto)</span></li>
+              <li><span class="tl-time">22:00</span><span class="tl-text">Vakarienė prie viešbučio — albanų virtuvė 🍽️</span></li>
+            </ul>
+            <div class="day-info-row">
+              <span class="info-chip">📏 ~450 km Kaunas–Varšuva</span>
+              <span class="info-chip">⏱ ~4,5 val. kelionė automobiliu</span>
+              <span class="info-chip">🅿️ Oro uosto parkavimas ~25–40 PLN/d.</span>
+              <span class="info-chip tip">💡 Rekomenduojama: Park &amp; Fly Okęcie — pigesnis nei oro uosto parkavimas</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Day 1 -->
+      <article class="day-card aos" style="--day-accent: var(--gold)">
+        <div class="day-card-header">
+          <div class="day-badge"><span class="day-emoji">🏰</span><span class="day-num">1 diena</span></div>
+          <div class="day-meta">
+            <h3>Spalio 31 · Šeštadienis</h3>
+            <p class="day-subtitle">Berat — UNESCO „Tūkstančio langų miestas"</p>
+          </div>
+          <button class="day-toggle" aria-expanded="true">▲</button>
+        </div>
+        <div class="day-body">
+          <div class="day-body-inner">
+            <div class="alert alert--teal">🏛️ <strong>UNESCO paveldo miestas:</strong> Berat — vienas geriausiai išsilaikiusių Osmanų imperijos laikotarpio miestų Balkanuose. Pilis kilo nuo IV a. pr. Kr. Nepraleiskite!</div>
+            <ul class="timeline">
+              <li><span class="tl-time">08:30</span><span class="tl-text">Pusryčiai viešbutyje</span></li>
+              <li><span class="tl-time">09:00</span><span class="tl-text">Išvažiavimas į Beratą (~2 val., ~120 km)</span></li>
+              <li><span class="tl-time">11:00</span><span class="tl-text">Atvykimas į Beratą — palikite automobilį prie senamiesčio</span></li>
+              <li><span class="tl-time">11:15</span><span class="tl-text">🚶 Mangalem kvartalas — balti namai su šimtais langų, akmenimis grįstos gatvelės</span></li>
+              <li><span class="tl-time">12:00</span><span class="tl-text">🏰 Beratos pilis (Kalaja) — kėlimasis pėsčiomis, panoraminis vaizdas į miestą</span></li>
+              <li><span class="tl-time">13:30</span><span class="tl-text">Pietūs Berato senamiestyje — byrek, tavë kosi, raki 🍷</span></li>
+              <li><span class="tl-time">15:00</span><span class="tl-text">⛪ Onufri muziejus pilies viduje — ikonų kolekcija</span></li>
+              <li><span class="tl-time">15:45</span><span class="tl-text">Gorica kvartalas — vaikščiojimas per senovinį akmeninį tiltą</span></li>
+              <li><span class="tl-time">17:00</span><span class="tl-text">Išvažiavimas atgal į Tiranę</span></li>
+              <li><span class="tl-time">19:00</span><span class="tl-text">Vakarienė Tiranoje — Oda restorano tradicinė albanų virtuvė</span></li>
+            </ul>
+            <div class="day-info-row">
+              <span class="info-chip">📏 ~120 km nuo Tiranės</span>
+              <span class="info-chip">⏱ ~2 val. kelionė</span>
+              <span class="info-chip">🎟 Pilis ~200 ALL (~2 €)</span>
+              <span class="info-chip tip">💡 Atsineškite patogius batus — pilis akmeninė!</span>
+              <span class="info-chip tip">📸 Geriausi vaizdai nuo pilies sienos</span>
+            </div>
+            <div class="spots-grid mt-2">
+              <div class="spot-card">
+                <span class="spot-emoji">🏰</span>
+                <div class="spot-name">Beratos pilis (Kalaja)</div>
+                <div class="spot-desc">IV a. pr. Kr. pilis su gyvuojančiu kaimu viduje. Stulbinantis vaizdas į miestą ir Osum upę.</div>
+              </div>
+              <div class="spot-card">
+                <span class="spot-emoji">🏘️</span>
+                <div class="spot-name">Mangalem kvartalas</div>
+                <div class="spot-desc">Osmanų laikotarpio namai su charakteringais didžiuliais langais — vadinami „tūkstančio langų namai".</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Day 2 -->
+      <article class="day-card aos" style="--day-accent: var(--accent)">
+        <div class="day-card-header">
+          <div class="day-badge"><span class="day-emoji">🏙️</span><span class="day-num">2 diena</span></div>
+          <div class="day-meta">
+            <h3>Lapkričio 1 · Sekmadienis</h3>
+            <p class="day-subtitle">Tirana + Krujė — sostinė ir nacionalinis herojus</p>
+          </div>
+          <button class="day-toggle" aria-expanded="true">▲</button>
+        </div>
+        <div class="day-body">
+          <div class="day-body-inner">
+            <ul class="timeline">
+              <li><span class="tl-time">09:00</span><span class="tl-text">Pusryčiai Tiranoje — Çajupi kavinė ar viešbučio restoranas</span></li>
+              <li><span class="tl-time">10:00</span><span class="tl-text">🏛️ Skanderbego aikštė — Albanijos širdis, Et'hem Bey mečetė</span></li>
+              <li><span class="tl-time">10:30</span><span class="tl-text">Nacionalinis istorijos muziejus (Muzeu Historik Kombëtar) — komunizmo era, ilirai</span></li>
+              <li><span class="tl-time">12:00</span><span class="tl-text">🏰 Bunk'Art 2 — komunizmo laikotarpio bunkerio muziejus miesto centre</span></li>
+              <li><span class="tl-time">13:00</span><span class="tl-text">Pietūs Pazari i Ri (Naujasis turgus) — vietinis maistas, gatvės virtuvė</span></li>
+              <li><span class="tl-time">14:30</span><span class="tl-text">Išvažiavimas į Kruję (~30 min., ~30 km)</span></li>
+              <li><span class="tl-time">15:00</span><span class="tl-text">🏰 Krujės pilis — Skanderbego muziejus, panorama į Adrijos lygumą</span></li>
+              <li><span class="tl-time">16:00</span><span class="tl-text">Krujės turgavietė — tradiciniai albanų rankdarbiai, suvenyrais</span></li>
+              <li><span class="tl-time">17:00</span><span class="tl-text">Grįžimas į Tiranę</span></li>
+              <li><span class="tl-time">19:00</span><span class="tl-text">Vakarienė Blloku rajone — modernūs restoranai, albanų vynas 🍷</span></li>
+              <li><span class="tl-time">21:00</span><span class="tl-text">Pasivaikščiojimas Blloku rajone — barai, kavinės</span></li>
+            </ul>
+            <div class="day-info-row">
+              <span class="info-chip">📏 Krujė ~30 km nuo Tiranės</span>
+              <span class="info-chip">🎟 Bunk'Art ~500 ALL (~5 €)</span>
+              <span class="info-chip">🎟 Muziejai ~200–500 ALL</span>
+              <span class="info-chip tip">💡 Blloku rajonas — geriausia vieta vakarienei Tiranoje</span>
+              <span class="info-chip tip">📸 Skanderbego aikštė graži vakare</span>
+            </div>
+            <div class="spots-grid mt-2">
+              <div class="spot-card">
+                <span class="spot-emoji">🔴⚫</span>
+                <div class="spot-name">Skanderbego aikštė</div>
+                <div class="spot-desc">Albanijos centrinis simbolis. Didžiulė aikštė su Skanderbego statula, Et'hem Bey mečete ir Nacionaliniu muziejumi.</div>
+              </div>
+              <div class="spot-card">
+                <span class="spot-emoji">☢️</span>
+                <div class="spot-name">Bunk'Art 2</div>
+                <div class="spot-desc">Komunistinio laikotarpio bunkeris paverstas muziejumi. Unikali Albanijos diktatūros istorija.</div>
+              </div>
+              <div class="spot-card">
+                <span class="spot-emoji">⚔️</span>
+                <div class="spot-name">Krujės pilis</div>
+                <div class="spot-desc">Skanderbego — albanų nacionalinio herojaus — rezidencija. Neprilygstamas vaizdas į Adrijos žemumą.</div>
+              </div>
+              <div class="spot-card">
+                <span class="spot-emoji">🍽️</span>
+                <div class="spot-name">Blloku rajonas</div>
+                <div class="spot-desc">Buvęs komunistų elito kvartalas, dabar geriausias Tiranės baras ir restoranų rajonas.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Day 3 -->
+      <article class="day-card aos" style="--day-accent: var(--teal)">
+        <div class="day-card-header">
+          <div class="day-badge"><span class="day-emoji">🌊✈️</span><span class="day-num">3 diena</span></div>
+          <div class="day-meta">
+            <h3>Lapkričio 2 · Pirmadienis</h3>
+            <p class="day-subtitle">Durrës + skrydis namo</p>
+          </div>
+          <button class="day-toggle" aria-expanded="true">▲</button>
+        </div>
+        <div class="day-body">
+          <div class="day-body-inner">
+            <div class="alert alert--danger">🕔 <strong>SVARBU:</strong> Skrydis išvyksta 19:05 — oro uoste reikia būti likus 2 val., t.y. iki 17:05. Automobilio grąžinimas iki 16:30. Iš Durrës išvažiuokite ne vėliau kaip 15:30!</div>
+            <ul class="timeline">
+              <li><span class="tl-time">09:00</span><span class="tl-text">Pusryčiai viešbutyje, bagažo susipakovimas</span></li>
+              <li><span class="tl-time">09:30</span><span class="tl-text">Check-out, bagažas į automobilį</span></li>
+              <li><span class="tl-time">10:00</span><span class="tl-text">Išvažiavimas į Durrës (~30 min., ~35 km)</span></li>
+              <li><span class="tl-time">10:30</span><span class="tl-text">🏛️ Durrës amfiteatras — II a. Romos imperijos amfiteatras, vienas didžiausių Balkanuose</span></li>
+              <li><span class="tl-time">11:30</span><span class="tl-text">Durrës paplūdimys — Adrijos jūra, promenada</span></li>
+              <li><span class="tl-time">12:30</span><span class="tl-text">Pietūs prie jūros — žuvis, jūros gėrybės 🐟</span></li>
+              <li><span class="tl-time">14:00</span><span class="tl-text">Durrës miesto centras — Venecijos bokštas, turgus</span></li>
+              <li><span class="tl-time">15:30</span><span class="tl-text">Išvažiavimas atgal į Tiranę / oro uostą</span></li>
+              <li><span class="tl-time">16:30</span><span class="tl-text">Automobilio grąžinimas TIA oro uoste</span></li>
+              <li><span class="tl-time">17:05</span><span class="tl-text">Registracija ir saugumo patikrinimas</span></li>
+              <li><span class="tl-time">19:05</span><span class="tl-text">✈️ Išskridimas · FR 6810 · TIA → WAW</span></li>
+              <li><span class="tl-time">21:10</span><span class="tl-text">Atvykimas į Varšuvą (WAW)</span></li>
+              <li><span class="tl-time">21:30</span><span class="tl-text">🚗 Išvažiavimas į Kauną</span></li>
+              <li><span class="tl-time">~02:00</span><span class="tl-text">Atvykimas į Kauną 🏠</span></li>
+            </ul>
+            <div class="day-info-row">
+              <span class="info-chip">📏 Durrës ~35 km nuo Tiranės</span>
+              <span class="info-chip">🎟 Amfiteatras ~200 ALL (~2 €)</span>
+              <span class="info-chip">🌊 Adrijos jūros temperatūra lapkritį ~18°C</span>
+              <span class="info-chip tip">💡 Pietūs prie jūros — žuvis nepaprastai pigi ir šviežia</span>
+              <span class="info-chip warn">⚠️ Grįžimas į Kauną ~02:00 nakties</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Budget -->
+<section id="budget">
+  <div class="container">
+    <h2 class="section-title aos">Biudžetas</h2>
+    <p class="section-lead aos">Apytiksliai vienam asmeniui · 4 žmonių grupė</p>
+    <div class="budget-table-wrap aos">
+      <table class="budget-table">
+        <thead>
+          <tr><th>Išlaidų kategorija</th><th>Min</th><th>Max</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>✈️ Skrydžiai Varšuva ↔ Tirana (Ryanair/Buzz)</td><td>75 €</td><td>75 €</td></tr>
+          <tr><td>⛽ Kuras Kaunas–Varšuva–Kaunas (~900 km / 4 žm.)</td><td>22 €</td><td>28 €</td></tr>
+          <tr><td>🅿️ Parkavimas Varšuvos oro uoste (3 naktys)</td><td>8 €</td><td>15 €</td></tr>
+          <tr><td>🚗 Automobilio nuoma Albanijoje (3 dienos / 4 žm.)</td><td>25 €</td><td>40 €</td></tr>
+          <tr><td>⛽ Kuras Albanijoje (~400 km / 4 žm.)</td><td>8 €</td><td>12 €</td></tr>
+          <tr><td>🏨 Viešbutis Tiranoje (2 kambariai × 3 naktys / 2)</td><td>45 €</td><td>75 €</td></tr>
+          <tr><td>🍽️ Maistas (Albanija labai pigi šalis!)</td><td>40 €</td><td>60 €</td></tr>
+          <tr><td>🎟 Bilietai (muziejai, pilis, Bunk'Art)</td><td>10 €</td><td>15 €</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>💰 Viso vienam asmeniui</td><td>233 €</td><td>320 €</td></tr>
+        </tfoot>
+      </table>
+    </div>
+    <p class="budget-note aos">* Albanija yra viena pigiausių šalių Europoje — maistas, kuras ir viešbučiai žymiai pigiau nei Lietuvoje. Kursas: 1 EUR ≈ 100 ALL (albanų lekų).</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Packing -->
+<section id="packing">
+  <div class="container">
+    <h2 class="section-title aos">Ką paimti</h2>
+    <p class="section-lead aos">Atžymėkite — sąrašas išsaugomas naršyklėje. Lapkritis Albanijoje: 15–20°C dieną, vakarais vėsiau.</p>
+    <div class="packing-grid">
+      <label class="pack-item aos"><input type="checkbox" data-pack="0"><span class="checkmark"></span><span class="pack-text">🪪 Pasas (Albanija reikalauja paso, ne tik ID)</span></label>
+      <label class="pack-item aos aos-delay-1"><input type="checkbox" data-pack="1"><span class="checkmark"></span><span class="pack-text">🪪 Tarptautinis vairuotojo pažymėjimas</span></label>
+      <label class="pack-item aos"><input type="checkbox" data-pack="2"><span class="checkmark"></span><span class="pack-text">🥾 Patogūs batai — akmeninės gatvės ir pilis</span></label>
+      <label class="pack-item aos aos-delay-1"><input type="checkbox" data-pack="3"><span class="checkmark"></span><span class="pack-text">🧥 Striukė / švarkasas — vakarais 12–15°C</span></label>
+      <label class="pack-item aos"><input type="checkbox" data-pack="4"><span class="checkmark"></span><span class="pack-text">💳 Grynųjų rezervas (ALL) — daugelis kavinių nepriima kortelių</span></label>
+      <label class="pack-item aos aos-delay-1"><input type="checkbox" data-pack="5"><span class="checkmark"></span><span class="pack-text">📱 Google Maps su atsisiųstais žemėlapiais</span></label>
+      <label class="pack-item aos"><input type="checkbox" data-pack="6"><span class="checkmark"></span><span class="pack-text">🔌 Universalus įkroviklis (Albanija: C tipo kištukai)</span></label>
+      <label class="pack-item aos aos-delay-1"><input type="checkbox" data-pack="7"><span class="checkmark"></span><span class="pack-text">🩹 Pirmos pagalbos vaistinėlė</span></label>
+      <label class="pack-item aos"><input type="checkbox" data-pack="8"><span class="checkmark"></span><span class="pack-text">🧴 Saulės kremas (spalio saulė vis dar stipri)</span></label>
+      <label class="pack-item aos aos-delay-1"><input type="checkbox" data-pack="9"><span class="checkmark"></span><span class="pack-text">🎒 Nedidelis kuprinukas dieninėms ekskursijoms</span></label>
+      <label class="pack-item aos"><input type="checkbox" data-pack="10"><span class="checkmark"></span><span class="pack-text">📷 Fotoaparatas / telefono įkroviklis</span></label>
+      <label class="pack-item aos aos-delay-1"><input type="checkbox" data-pack="11"><span class="checkmark"></span><span class="pack-text">🌂 Lietsargis — lapkritis gali būti lietingas</span></label>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Contacts -->
+<section id="contacts">
+  <div class="container">
+    <h2 class="section-title aos">Naudinga informacija</h2>
+    <p class="section-lead aos">Svarbūs kontaktai ir nuorodos Albanijoje.</p>
+    <div class="contacts-grid">
+      <a class="contact-card aos" href="tel:+355042228888">
+        <span class="contact-icon">🚨</span>
+        <div class="contact-info">
+          <span class="contact-name">Albanijos bendrasis pagalbos numeris</span>
+          <span class="contact-detail">112</span>
+          <span class="contact-sub">Policija: 129 · Greitoji: 127</span>
+        </div>
+      </a>
+      <a class="contact-card aos aos-delay-1" href="tel:+355042381800">
+        <span class="contact-icon">🏥</span>
+        <div class="contact-info">
+          <span class="contact-name">American Hospital Tirana</span>
+          <span class="contact-detail">+355 04 238 18 00</span>
+          <span class="contact-sub">Angliškai kalbantis personalas</span>
+        </div>
+      </a>
+      <a class="contact-card aos" href="https://www.albaniaairport.com" target="_blank" rel="noopener">
+        <span class="contact-icon">✈️</span>
+        <div class="contact-info">
+          <span class="contact-name">Tirana Rinas oro uostas (TIA)</span>
+          <span class="contact-detail">+355 04 238 18 00</span>
+          <span class="contact-sub">albaniaairport.com</span>
+        </div>
+      </a>
+      <a class="contact-card aos aos-delay-1" href="https://www.muzeumihistorik.gov.al" target="_blank" rel="noopener">
+        <span class="contact-icon">🏛️</span>
+        <div class="contact-info">
+          <span class="contact-name">Nacionalinis istorijos muziejus</span>
+          <span class="contact-detail">Skanderbego aikštė, Tirana</span>
+          <span class="contact-sub">~500 ALL (~5 €)</span>
+        </div>
+      </a>
+      <a class="contact-card aos" href="tel:+355692000000">
+        <span class="contact-icon">☢️</span>
+        <div class="contact-info">
+          <span class="contact-name">Bunk'Art 2 muziejus</span>
+          <span class="contact-detail">Rruga Abdi Toptani, Tirana</span>
+          <span class="contact-sub">~500 ALL · Iki 18:00</span>
+        </div>
+      </a>
+      <a class="contact-card aos aos-delay-1" href="tel:+355322233755">
+        <span class="contact-icon">🏰</span>
+        <div class="contact-info">
+          <span class="contact-name">Beratos pilis</span>
+          <span class="contact-detail">Berat, Albanija</span>
+          <span class="contact-sub">~200 ALL · UNESCO paveldas</span>
+        </div>
+      </a>
+      <a class="contact-card aos" href="tel:+35552225028">
+        <span class="contact-icon">🏛️</span>
+        <div class="contact-info">
+          <span class="contact-name">Durrës amfiteatras</span>
+          <span class="contact-detail">Durrës, Albanija</span>
+          <span class="contact-sub">~200 ALL · II a. Romos imperija</span>
+        </div>
+      </a>
+      <a class="contact-card aos aos-delay-1" href="tel:+355511111">
+        <span class="contact-icon">🇱🇹</span>
+        <div class="contact-info">
+          <span class="contact-name">Lietuvos užsienio reikalų ministerija</span>
+          <span class="contact-detail">+370 5 236 2444</span>
+          <span class="contact-sub">Pagalba užsienyje</span>
+        </div>
+      </a>
+    </div>
+    <div class="alert alert--info mt-2 aos">
+      💡 <strong>Valiuta:</strong> Albanų lekas (ALL). 1 EUR ≈ 100 ALL. Bankomato valiuta rekomenduojama vietoje — venkite keityklų oro uoste. Daugelis restoranų priima EUR grynaisiais.
+    </div>
+    <div class="alert alert--warning mt-1 aos">
+      📱 <strong>SIM kortele:</strong> Albanija nėra ES — roamingo tarifai gali būti brangūs. Rekomenduojama pirkti vietinę SIM (Vodafone AL / ONE arba Eagle Mobile) — ~5 € su 5 GB duomenimis.
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-title">Albanija 2025</div>
+  <p class="footer-sub">Spalio 30 – Lapkričio 2 · 4 žmonės · Tirana, Berat, Krujė, Durrës</p>
+  <p class="footer-sub">WAW ✈️ TIA · FR 6809 / FR 6810 · Buzz (Ryanair) 🇦🇱</p>
+  <p class="footer-tagline">Gero kelio! ✈️🦅</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => navLinks.classList.remove('open'))
+  );
+
+  document.querySelectorAll('.day-body').forEach(body => {
+    body.style.maxHeight = body.scrollHeight + 'px';
+  });
+
+  document.querySelectorAll('.day-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body = btn.closest('.day-card').querySelector('.day-body');
+      const expanded = btn.getAttribute('aria-expanded') !== 'false';
+      if (expanded) {
+        body.style.maxHeight = '0px';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = '▼';
+      } else {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+        btn.textContent = '▲';
+      }
+    });
+  });
+
+  const PACK_KEY = 'albania-packing-2025';
+  const saved = JSON.parse(localStorage.getItem(PACK_KEY) || '{}');
+  document.querySelectorAll('[data-pack]').forEach(cb => {
+    const i = cb.dataset.pack;
+    if (saved[i]) cb.checked = true;
+    cb.addEventListener('change', () => {
+      saved[i] = cb.checked;
+      localStorage.setItem(PACK_KEY, JSON.stringify(saved));
+    });
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.aos').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
