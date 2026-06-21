@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
@@ -691,6 +693,57 @@
       margin-bottom: 0.25rem;
     }
     .spot-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+    .spot-more-btn {
+      margin-top: 0.75rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .spot-more-btn:hover { color: var(--text); border-color: var(--border-light); background: var(--surface-2); }
+    .spot-info {
+      margin-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+    }
+    .spot-photo {
+      width: 100%;
+      border-radius: var(--radius-md);
+      margin-bottom: 0.75rem;
+      object-fit: cover;
+      max-height: 200px;
+      display: block;
+    }
+    .spot-history { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+    .spot-history p + p { margin-top: 0.5rem; }
+
+    /* Map */
+    #map-section { padding: 3rem 0; background: var(--surface); }
+    #trip-map {
+      height: 420px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .leaflet-popup-content-wrapper {
+      background: var(--surface-2) !important;
+      border: 1px solid var(--border-light) !important;
+      border-radius: var(--radius-md) !important;
+      box-shadow: var(--shadow-lg) !important;
+      color: var(--text) !important;
+    }
+    .leaflet-popup-tip { background: var(--surface-2) !important; }
+    .leaflet-popup-content { color: var(--text); font-family: var(--font-body); font-size: 0.85rem; }
+    .popup-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.2rem; color: var(--text); }
+    .popup-sub { color: var(--text-muted); font-size: 0.78rem; }
 
     /* Budget */
     .budget-table-wrap {
@@ -842,6 +895,7 @@
   <div class="nav-brand">Albanija '26</div>
   <ul class="nav-links">
     <li><a href="#flights">Skrydžiai</a></li>
+    <li><a href="#map-section">Žemėlapis</a></li>
     <li><a href="#itinerary">Dienotvarkė</a></li>
     <li><a href="#budget">Biudžetas</a></li>
     <li><a href="#packing">Ką paimti</a></li>
@@ -871,6 +925,17 @@
   <div class="stat"><span class="stat-value">~450</span><span class="stat-label">km iki WAW</span></div>
   <div class="stat"><span class="stat-value">UNESCO</span><span class="stat-label">Berat miestas</span></div>
 </div>
+
+<!-- Map -->
+<section id="map-section">
+  <div class="container">
+    <h2 class="section-title aos">Žemėlapis</h2>
+    <p class="section-lead aos">Visos kelionės vietos — Tirana, Berat, Krujė, Durrës.</p>
+    <div id="trip-map" class="aos"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
 
 <!-- Flights -->
 <section id="flights">
@@ -1043,11 +1108,29 @@
                 <span class="spot-emoji">🏰</span>
                 <div class="spot-name">Beratos pilis (Kalaja)</div>
                 <div class="spot-desc">IV a. pr. Kr. pilis su gyvuojančiu kaimu viduje. Stulbinantis vaizdas į miestą ir Osum upę.</div>
+                <button class="spot-more-btn" onclick="toggleSpotInfo(this)">Skaityti daugiau ▼</button>
+                <div class="spot-info" hidden>
+                  <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Berat_castle_Albania.jpg/800px-Berat_castle_Albania.jpg" alt="Beratos pilis" loading="lazy" onerror="this.style.display='none'">
+                  <div class="spot-history">
+                    <p>Beratos pilis (alb. <em>Kalaja e Beratit</em>) — viena seniausių ir geriausiai išsilaikiusių pilių Albanijoje. Pirmosios fortifikacijos čia iškilo IV a. pr. Kr., helenistiniu laikotarpiu. Romėnai, Bizantija, bulgarai, serbai ir Osmanų imperija — visos šios civilizacijos paliko pėdsakus pilies mūruose.</p>
+                    <p>Unikalu tai, kad pilis nėra tuščia — jos viduje iki šiol gyvena žmonės, o senojoje gyvenvietėje veikia bažnyčios, muziejai ir kavinės. Pilies teritorijoje išlikę daugiau nei 20 Византijos bažnyčių, iš kurių svarbiausia — Šv. Trinybos bažnyčia su Onufri freskų kolekcija.</p>
+                    <p>2008 metais Berat (kartu su Gjirokastra) įtrauktas į UNESCO Pasaulio paveldo sąrašą kaip „gyvų miestų muziejus".</p>
+                  </div>
+                </div>
               </div>
               <div class="spot-card">
                 <span class="spot-emoji">🏘️</span>
                 <div class="spot-name">Mangalem kvartalas</div>
                 <div class="spot-desc">Osmanų laikotarpio namai su charakteringais didžiuliais langais — vadinami „tūkstančio langų namai".</div>
+                <button class="spot-more-btn" onclick="toggleSpotInfo(this)">Skaityti daugiau ▼</button>
+                <div class="spot-info" hidden>
+                  <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Berat%2C_Albania_%288708950495%29.jpg/800px-Berat%2C_Albania_%288708950495%29.jpg" alt="Mangalem kvartalas Berate" loading="lazy" onerror="this.style.display='none'">
+                  <div class="spot-history">
+                    <p>Mangalem — istorinis musulmoniškas Berato kvartalas, įsikūręs stačiame Osum upės šlaite, tiesiai po Kalaja pilimi. Kvartalo namai statyti XVIII–XIX a. Osmanų laikotarpiu ir pasižymi labai neįprastu architektūros elementu: kiekvieno namo fasade — daugybė didelių langų, susidedančių į mozaiką.</p>
+                    <p>Šis unikalus reginys ir suteikė Beratui pravardę — <em>„tūkstančio langų miestas"</em> (alb. <em>Qyteti i Një Mije Dritareve</em>). Langai buvo tokie dideli, nes statybos metu apmokestinamos durys, bet ne langai — taigi gyventojai rado gudrų sprendimą.</p>
+                    <p>Kvartale gausu tradicinių albanų restoranų (me byrek, tavë kosi), kavinių ir rankdarbių parduotuvėlių. Pasivaikščiojimas akmeninėmis gatvelėmis saulėlydžio metu — vienas nepamirštamiausių Albanijos įspūdžių.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1091,21 +1174,55 @@
                 <span class="spot-emoji">🔴⚫</span>
                 <div class="spot-name">Skanderbego aikštė</div>
                 <div class="spot-desc">Albanijos centrinis simbolis. Didžiulė aikštė su Skanderbego statula, Et'hem Bey mečete ir Nacionaliniu muziejumi.</div>
+                <button class="spot-more-btn" onclick="toggleSpotInfo(this)">Skaityti daugiau ▼</button>
+                <div class="spot-info" hidden>
+                  <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Skanderbeg_Square_in_Tirana.jpg/800px-Skanderbeg_Square_in_Tirana.jpg" alt="Skanderbego aikštė Tiranoje" loading="lazy" onerror="this.style.display='none'">
+                  <div class="spot-history">
+                    <p>Skanderbego aikštė (alb. <em>Sheshi Skënderbej</em>) — Albanijos sostinės Tiranės širdis ir didžiausia pėsčiųjų aikštė Balkanuose. Aikštė pavadinta Albanijos nacionaliniu didvyriu — Gjergj Kastrioti Skanderbegas (1405–1468), kuris XV a. vadovavo albanų pasipriešinimui prieš Osmanų imperiją.</p>
+                    <p>Dabartinę išvaizdą aikštė įgijo 2017 m. po rekonstrukcijos. Čia stovi ryškus Skanderbego raitelio monumentas, o aplink — svarbiausios šalies institucijos: Nacionalinis istorijos muziejus (su mozaika ant fasado), Et'hem Bey mečetė (1821 m.) ir kultūros rūmai.</p>
+                  </div>
+                </div>
               </div>
               <div class="spot-card">
                 <span class="spot-emoji">☢️</span>
                 <div class="spot-name">Bunk'Art 2</div>
                 <div class="spot-desc">Komunistinio laikotarpio bunkeris paverstas muziejumi. Unikali Albanijos diktatūros istorija.</div>
+                <button class="spot-more-btn" onclick="toggleSpotInfo(this)">Skaityti daugiau ▼</button>
+                <div class="spot-info" hidden>
+                  <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Tirana_bunkart2.jpg/800px-Tirana_bunkart2.jpg" alt="Bunk'Art 2 muziejus" loading="lazy" onerror="this.style.display='none'">
+                  <div class="spot-history">
+                    <p>Bunk'Art 2 — buvęs slaptasis komunistų valdžios bunkeris Tiranoje, atidarytas kaip muziejus 2016 m. Jis įsikūręs po Vidaus reikalų ministerija ir buvo skirtas aukštiems pareigūnams slėptis branduolinio karo atveju.</p>
+                    <p>Albanija valdant Enver Hoxha (1944–1985) tapo viena izoliuočiausių šalių pasaulyje. Hoxha liepė pastatyti per 750 000 betoninių bunkerių visoje šalyje — vienam kiekvienam šeimynai. Šis paranojiškas projektas absorbavo didžiulę dalį šalies išteklių.</p>
+                    <p>Muziejus atskleidžia Sigurimi (slaptosios policijos) veiklą, persekiojimų istorijas ir kasdienį gyvenimą diktatūroje. Tai vienas jaudinančiausių muziejų visame Balkanuose.</p>
+                  </div>
+                </div>
               </div>
               <div class="spot-card">
                 <span class="spot-emoji">⚔️</span>
                 <div class="spot-name">Krujės pilis</div>
                 <div class="spot-desc">Skanderbego — albanų nacionalinio herojaus — rezidencija. Neprilygstamas vaizdas į Adrijos žemumą.</div>
+                <button class="spot-more-btn" onclick="toggleSpotInfo(this)">Skaityti daugiau ▼</button>
+                <div class="spot-info" hidden>
+                  <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Kruja_castle_Albania.jpg/800px-Kruja_castle_Albania.jpg" alt="Krujės pilis" loading="lazy" onerror="this.style.display='none'">
+                  <div class="spot-history">
+                    <p>Krujė — nedidelis kalnų miestelis ~30 km šiaurėje nuo Tiranės, tačiau albanams tai šventė vieta. Čia gyveno ir gynėsi Gjergj Kastrioti Skanderbegas — albanų karvedys, kuris 1443–1468 m. atsilaikė prieš Osmanų imperijos kariuomenę tris kartus.</p>
+                    <p>Krujės pilis pirmą kartą paminėta V a. Viduramžiais ji buvo Albanijos valstybės centras. Skanderbegas čia įkūrė Albanijos lygą ir koordinavo gynybą. Po jo mirties 1468 m. osmanai užėmė pilį ir ilgam nustūmė Albaniją į istorijos paraštes.</p>
+                    <p>Šiandien pilies viduje veikia Skanderbego muziejus su jo šalmu, ginklais ir gyvenimo istorija. Nuo pilies sienos atsiveria stulbinantis vaizdas į Adrijos žemumos lygumą ir toliau — į Adrijos jūrą.</p>
+                  </div>
+                </div>
               </div>
               <div class="spot-card">
                 <span class="spot-emoji">🍽️</span>
                 <div class="spot-name">Blloku rajonas</div>
                 <div class="spot-desc">Buvęs komunistų elito kvartalas, dabar geriausias Tiranės baras ir restoranų rajonas.</div>
+                <button class="spot-more-btn" onclick="toggleSpotInfo(this)">Skaityti daugiau ▼</button>
+                <div class="spot-info" hidden>
+                  <div class="spot-history">
+                    <p>Blloku (alb. „kvartalas") — Tiranoje esantis rajonas, kuris komunizmo metais buvo griežtai uždarytas paprastiems piliečiams. Čia gyveno Enver Hoxha ir komunistų partijos elitas, apsuptas aukštų sienų ir ginkluotų sargybinių.</p>
+                    <p>Komunizmo žlugimo 1991 m. po Blloku vartai buvo atverti ir žmonės pirmą kartą galėjo įeiti į šį slaptą kvartalą. Šiandien tai kontrastas — buvusiame elito rajone knibžda kavinės, barai, restoranai ir butikai.</p>
+                    <p>Čia verta vakarieniauti — rasite tiek tradicinę albanų virtuvę (tavë kosi — aviena su jogurtu, byrek — tešlos pyragas su mėsa ar sūriu), tiek modernius fusion restoranus. Albanų vynas — neabejotinai nustebins savo kokybe ir pigia kaina.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1147,6 +1264,36 @@
               <span class="info-chip">🌊 Adrijos jūros temperatūra lapkritį ~18°C</span>
               <span class="info-chip tip">💡 Pietūs prie jūros — žuvis nepaprastai pigi ir šviežia</span>
               <span class="info-chip warn">⚠️ Grįžimas į Kauną ~02:00 nakties</span>
+            </div>
+            <div class="spots-grid mt-2">
+              <div class="spot-card">
+                <span class="spot-emoji">🏛️</span>
+                <div class="spot-name">Durrës amfiteatras</div>
+                <div class="spot-desc">II a. Romos imperijos amfiteatras — vienas didžiausių Balkanuose. Atrasta tik XX a.</div>
+                <button class="spot-more-btn" onclick="toggleSpotInfo(this)">Skaityti daugiau ▼</button>
+                <div class="spot-info" hidden>
+                  <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Amphitheater_of_Durres.jpg/800px-Amphitheater_of_Durres.jpg" alt="Durrës amfiteatras" loading="lazy" onerror="this.style.display='none'">
+                  <div class="spot-history">
+                    <p>Durrës (senovėje — <em>Dyrrachium</em> arba <em>Epidamnos</em>) — vienas seniausių miestų Albanijoje, įkurtas apie 627 m. pr. Kr. Korinto kolonistų. Dėl savo strateginės padėties prie Adrijos jūros miestas buvo Romos imperijos svarbus uostas ir Via Egnatia kelio — didžiojo kelio į Rytus — pradžios taškas.</p>
+                    <p>Amfiteatras pastatytas II a. po Kr. ir galėjo talpinti iki 15 000–20 000 žiūrovų. Jis buvo atrasta tik 1966 m. kasinėjimų metu ir šiandien laikomas vienu geriausiai išsilaikiusių tokio tipo statinių visame Balkanuose. Viduje netgi išlikusi ankstyvosios krikščionybės koplyčia su mozaikomis.</p>
+                    <p>Įdomu tai, kad aplink amfiteatrą iki šiol stovi gyvenamieji namai — miestas tiesiogine prasme išaugo aplink šį antikinį paminklą.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="spot-card">
+                <span class="spot-emoji">🌊</span>
+                <div class="spot-name">Durrës paplūdimys</div>
+                <div class="spot-desc">Albanijos didžiausias paplūdimys prie Adrijos jūros. Lapkritį ramus ir tuščias — visai kitoks nei vasarą.</div>
+                <button class="spot-more-btn" onclick="toggleSpotInfo(this)">Skaityti daugiau ▼</button>
+                <div class="spot-info" hidden>
+                  <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Durres_Beach_Albania.jpg/800px-Durres_Beach_Albania.jpg" alt="Durrës paplūdimys" loading="lazy" onerror="this.style.display='none'">
+                  <div class="spot-history">
+                    <p>Durrës paplūdimys — apie 10 km ilgio smėlio juosta, vieta, kur Albanija tradiciškai atostogauja vasarą. Liepos–rugpjūčio mėnesiais čia prisirinkę šimtai tūkstančių žmonių, tačiau lapkritį pajūris yra visiškai kitoniškas — ramus, beveik tuščias ir labai fotoištas.</p>
+                    <p>Adrijos jūros vanduo lapkritį siekia ~17–19°C — dar galima nardyti drąsesniems! Pajūrio promenada ištisai išdėstyta žuvies restoranais, kur galima paragauti šviežiausių jūros gėrybių už neįtikėtinai mažas kainas. Kalmaro, midijų ar žuvies keptuvė kainuos vos 5–8 €.</p>
+                    <p>Iš paplūdimio gerai matosi Italijos pakrantė ūkanotomis dienomis — atstumas iki Italijos tik ~72 km. Tai artimiausias Europoje taškas tarp dviejų šalių, nesijungiant per tiltą.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1355,6 +1502,60 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
   document.querySelectorAll('.aos').forEach(el => observer.observe(el));
+
+  /* ── Spot info toggle ─────────────────────────────────────────── */
+  function toggleSpotInfo(btn) {
+    const info = btn.nextElementSibling;
+    const open = !info.hidden;
+    info.hidden = open;
+    btn.textContent = open ? 'Skaityti daugiau ▼' : 'Uždaryti ▲';
+    if (!open) {
+      const body = btn.closest('.day-body');
+      if (body) body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  }
+  window.toggleSpotInfo = toggleSpotInfo;
+
+  /* ── Leaflet map ──────────────────────────────────────────────── */
+  const map = L.map('trip-map', { zoomControl: true, scrollWheelZoom: false }).setView([41.15, 19.85], 8);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 18
+  }).addTo(map);
+
+  const iconStyle = (color) => L.divIcon({
+    className: '',
+    html: `<div style="background:${color};width:14px;height:14px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.5)"></div>`,
+    iconSize: [14, 14],
+    iconAnchor: [7, 7]
+  });
+
+  const spots = [
+    { lat: 41.3305, lng: 19.8313, title: 'Tirana', sub: 'Sostinė · viešbutis, muziejai', day: '0 – 3 dienos', color: '#c9493a' },
+    { lat: 41.3303, lng: 19.8338, title: 'Skanderbego aikštė', sub: 'Albanijos širdis', day: '2 diena', color: '#c9493a' },
+    { lat: 41.3255, lng: 19.8219, title: "Bunk'Art 2", sub: 'Komunizmo bunkerio muziejus', day: '2 diena', color: '#c9493a' },
+    { lat: 40.7058, lng: 19.9522, title: 'Berat', sub: 'UNESCO · tūkstančio langų miestas', day: '1 diena', color: '#c9a84c' },
+    { lat: 40.7090, lng: 19.9458, title: 'Beratos pilis (Kalaja)', sub: 'IV a. pr. Kr. pilis', day: '1 diena', color: '#c9a84c' },
+    { lat: 41.5089, lng: 19.7917, title: 'Krujės pilis', sub: 'Skanderbego rezidencija', day: '2 diena', color: '#5a9c6a' },
+    { lat: 41.3233, lng: 19.4413, title: 'Durrës amfiteatras', sub: 'II a. Romos imperija', day: '3 diena', color: '#3a8c7c' },
+    { lat: 41.3100, lng: 19.4350, title: 'Durrës paplūdimys', sub: 'Adrijos jūra', day: '3 diena', color: '#3a8c7c' },
+  ];
+
+  spots.forEach(s => {
+    L.marker([s.lat, s.lng], { icon: iconStyle(s.color) })
+      .addTo(map)
+      .bindPopup(`<div class="popup-title">${s.title}</div><div class="popup-sub">${s.sub}<br>${s.day}</div>`);
+  });
+
+  const routeCoords = [
+    [41.3305, 19.8313],
+    [40.7058, 19.9522],
+    [41.3305, 19.8313],
+    [41.5089, 19.7917],
+    [41.3305, 19.8313],
+    [41.3233, 19.4413],
+  ];
+  L.polyline(routeCoords, { color: '#c9a84c', weight: 2, opacity: 0.5, dashArray: '6 6' }).addTo(map);
 </script>
 </body>
 </html>
