@@ -724,6 +724,36 @@
     .spot-history { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
     .spot-history p + p { margin-top: 0.5rem; }
 
+    /* Bad weather plan */
+    .bad-weather-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      text-align: left;
+      background: rgba(74,111,165,0.08);
+      border: 1px dashed rgba(74,111,165,0.35);
+      color: #7a9ac5;
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 1.25rem;
+      transition: background 0.2s, border-color 0.2s;
+      font-family: var(--font-body);
+    }
+    .bad-weather-btn:hover { background: rgba(74,111,165,0.15); border-color: rgba(74,111,165,0.5); }
+    .bad-weather-panel {
+      margin-top: 0.75rem;
+      background: rgba(74,111,165,0.05);
+      border: 1px solid rgba(74,111,165,0.2);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+    }
+    .bad-weather-panel .timeline li::before { background: #7a9ac5; }
+    .bad-weather-panel .tl-time { color: #7a9ac5; }
+
     /* Map */
     #map-section { padding: 3rem 0; background: var(--surface); }
     #trip-map {
@@ -1072,110 +1102,165 @@
       </article>
 
       <!-- Day 1 -->
-      <article class="day-card aos" style="--day-accent: var(--gold)">
+      <article class="day-card aos" style="--day-accent: var(--green)">
         <div class="day-card-header">
-          <div class="day-badge"><span class="day-emoji">🏰</span><span class="day-num">1 diena</span></div>
+          <div class="day-badge"><span class="day-emoji">🏔️</span><span class="day-num">1 diena</span></div>
           <div class="day-meta">
             <h3>Spalio 31 · Šeštadienis</h3>
-            <p class="day-subtitle">Berat — UNESCO „Tūkstančio langų miestas"</p>
+            <p class="day-subtitle">Dajti kalnas + Bovilla ežeras — gamta virš Tiranės</p>
           </div>
           <button class="day-toggle" aria-expanded="true">▲</button>
         </div>
         <div class="day-body">
           <div class="day-body-inner">
-            <div class="alert alert--teal">🏛️ <strong>UNESCO paveldo miestas:</strong> Berat — vienas geriausiai išsilaikiusių Osmanų imperijos laikotarpio miestų Balkanuose. Pilis kilo nuo IV a. pr. Kr. Nepraleiskite!</div>
+            <div class="alert alert--teal">🌿 <strong>Gamtos diena:</strong> Dajti — 1613 m aukščio kalnas tiesiogiai virš Tiranės. Vienas ilgiausių lynų kelių Balkanuose pakels jus į mišku apaugusį kalnagūbrį su stulbinančia panorama.</div>
             <ul class="timeline">
               <li><span class="tl-time">08:30</span><span class="tl-text">Pusryčiai viešbutyje</span></li>
-              <li><span class="tl-time">09:00</span><span class="tl-text">Išvažiavimas į Beratą (~2 val., ~120 km)</span></li>
-              <li><span class="tl-time">11:00</span><span class="tl-text">Atvykimas į Beratą — palikite automobilį prie senamiesčio</span></li>
-              <li><span class="tl-time">11:15</span><span class="tl-text">🚶 Mangalem kvartalas — balti namai su šimtais langų, akmenimis grįstos gatvelės</span></li>
-              <li><span class="tl-time">12:00</span><span class="tl-text">🏰 Beratos pilis (Kalaja) — kėlimasis pėsčiomis, panoraminis vaizdas į miestą</span></li>
-              <li><span class="tl-time">13:30</span><span class="tl-text">Pietūs Berato senamiestyje — byrek, tavë kosi, raki 🍷</span></li>
-              <li><span class="tl-time">15:00</span><span class="tl-text">⛪ Onufri muziejus pilies viduje — ikonų kolekcija</span></li>
-              <li><span class="tl-time">15:45</span><span class="tl-text">Gorica kvartalas — vaikščiojimas per senovinį akmeninį tiltą</span></li>
-              <li><span class="tl-time">17:00</span><span class="tl-text">Išvažiavimas atgal į Tiranę</span></li>
-              <li><span class="tl-time">19:00</span><span class="tl-text">Vakarienė Tiranoje — Oda restorano tradicinė albanų virtuvė</span></li>
+              <li><span class="tl-time">09:15</span><span class="tl-text">Išvažiavimas į Dajti Ekspres stotį (~20 min nuo centro)</span></li>
+              <li><span class="tl-time">09:45</span><span class="tl-text">🚡 Dajti Ekspres lynų kelias — 4,7 km, 15 min., panoraminiai vaizdai</span></li>
+              <li><span class="tl-time">10:15</span><span class="tl-text">🥾 Žygis Dajti nacionaliniame parke — miškai, eglynai, akmenų takai</span></li>
+              <li><span class="tl-time">12:30</span><span class="tl-text">Pietūs Dajti viršūnės restorane — vaizdingas teras virš debesų 🍽️</span></li>
+              <li><span class="tl-time">14:00</span><span class="tl-text">Tęsiamas žygis arba poilsis kalno papėdėje prie čiabuvių stovyklos</span></li>
+              <li><span class="tl-time">15:30</span><span class="tl-text">🚗 Važiavimas į Bovilla ežerą (~18 km nuo Tiranės)</span></li>
+              <li><span class="tl-time">16:00</span><span class="tl-text">🏞️ Bovilla rezervuaras — kalnų ežeras, žalios terasos, visiškai ramu</span></li>
+              <li><span class="tl-time">17:30</span><span class="tl-text">Grįžimas į Tiranę</span></li>
+              <li><span class="tl-time">19:00</span><span class="tl-text">Vakarienė Blloku rajone 🍷</span></li>
             </ul>
             <div class="day-info-row">
-              <span class="info-chip">📏 ~120 km nuo Tiranės</span>
-              <span class="info-chip">⏱ ~2 val. kelionė</span>
-              <span class="info-chip">🎟 Pilis ~200 ALL (~2 €)</span>
-              <span class="info-chip tip">💡 Atsineškite patogius batus — pilis akmeninė!</span>
-              <span class="info-chip tip">📸 Geriausi vaizdai nuo pilies sienos</span>
+              <span class="info-chip">🚡 Lynų kelias ~400 ALL (~4 €)</span>
+              <span class="info-chip">📏 Bovilla ~18 km nuo Tiranės</span>
+              <span class="info-chip">🌡 Dajti viršūnėje 5–8°C vėsiau</span>
+              <span class="info-chip tip">💡 Atsineškite striukę — kalne šalčiau nei mieste!</span>
+              <span class="info-chip tip">📸 Geriausi vaizdai rytinėje Dajti pusėje</span>
             </div>
             <div class="spots-grid mt-2">
               <div class="spot-card">
-                <span class="spot-emoji">🏰</span>
-                <div class="spot-name">Beratos pilis (Kalaja)</div>
-                <div class="spot-desc">IV a. pr. Kr. pilis su gyvuojančiu kaimu viduje. Stulbinantis vaizdas į miestą ir Osum upę.</div>
+                <span class="spot-emoji">🚡</span>
+                <div class="spot-name">Dajti Ekspres</div>
+                <div class="spot-desc">Vienas ilgiausių lynų kelių Balkanuose — 4,7 km, pakyla 1000 m aukščio per 15 minučių virš Tiranės.</div>
                 <button class="spot-more-btn" onclick="toggleSpotInfo(this)">Skaityti daugiau ▼</button>
                 <div class="spot-info" hidden>
-                  <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Berat_castle_Albania.jpg/800px-Berat_castle_Albania.jpg" alt="Beratos pilis" loading="lazy" onerror="this.style.display='none'">
+                  <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Dajti_ekspres_kabinovej.jpg/800px-Dajti_ekspres_kabinovej.jpg" alt="Dajti Ekspres lynų kelias" loading="lazy" onerror="this.style.display='none'">
                   <div class="spot-history">
-                    <p>Beratos pilis (alb. <em>Kalaja e Beratit</em>) — viena seniausių ir geriausiai išsilaikiusių pilių Albanijoje. Pirmosios fortifikacijos čia iškilo IV a. pr. Kr., helenistiniu laikotarpiu. Romėnai, Bizantija, bulgarai, serbai ir Osmanų imperija — visos šios civilizacijos paliko pėdsakus pilies mūruose.</p>
-                    <p>Unikalu tai, kad pilis nėra tuščia — jos viduje iki šiol gyvena žmonės, o senojoje gyvenvietėje veikia bažnyčios, muziejai ir kavinės. Pilies teritorijoje išlikę daugiau nei 20 Византijos bažnyčių, iš kurių svarbiausia — Šv. Trinybos bažnyčia su Onufri freskų kolekcija.</p>
-                    <p>2008 metais Berat (kartu su Gjirokastra) įtrauktas į UNESCO Pasaulio paveldo sąrašą kaip „gyvų miestų muziejus".</p>
+                    <p>Dajti Ekspres — vienas ilgiausių kabininio lynų kelių Balkanuose (4,7 km), atidarytas 2005 m. Per 15 minučių jis pakelia keleivius nuo Tiranės priemiesčio beveik 1000 m aukščio į Dajti kalno gūbrį (1613 m v.j.l.).</p>
+                    <p>Dajti nacionalinis parkas, kuriame auga tankūs ąžuolų ir bukinių miškų masyvas, yra pati populiariausia albanų pabėgimo nuo miesto vieta. Parke yra kelios kilometrų išvystytos pėsčiųjų takų sistemos, žiūrėjimo aikštelės ir vietinių kavinių.</p>
+                    <p>Nuo kalno gūbrio atsiveria neįtikėtinas 360° panoramos vaizdas: į vakarus — Tirana ir Adrijos jūra, į rytus — Albanijos Alpių kalnai. Aiškiu oru galima net įžvelgti Italiją.</p>
                   </div>
                 </div>
               </div>
               <div class="spot-card">
-                <span class="spot-emoji">🏘️</span>
-                <div class="spot-name">Mangalem kvartalas</div>
-                <div class="spot-desc">Osmanų laikotarpio namai su charakteringais didžiuliais langais — vadinami „tūkstančio langų namai".</div>
+                <span class="spot-emoji">🏞️</span>
+                <div class="spot-name">Bovilla ežeras</div>
+                <div class="spot-desc">Kalnų rezervuaras 18 km nuo Tiranės — žalios uolos, turkio vanduo, beveik nėra turistų.</div>
                 <button class="spot-more-btn" onclick="toggleSpotInfo(this)">Skaityti daugiau ▼</button>
                 <div class="spot-info" hidden>
-                  <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Berat%2C_Albania_%288708950495%29.jpg/800px-Berat%2C_Albania_%288708950495%29.jpg" alt="Mangalem kvartalas Berate" loading="lazy" onerror="this.style.display='none'">
+                  <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Bovilla_reservoir.jpg/800px-Bovilla_reservoir.jpg" alt="Bovilla ežeras" loading="lazy" onerror="this.style.display='none'">
                   <div class="spot-history">
-                    <p>Mangalem — istorinis musulmoniškas Berato kvartalas, įsikūręs stačiame Osum upės šlaite, tiesiai po Kalaja pilimi. Kvartalo namai statyti XVIII–XIX a. Osmanų laikotarpiu ir pasižymi labai neįprastu architektūros elementu: kiekvieno namo fasade — daugybė didelių langų, susidedančių į mozaiką.</p>
-                    <p>Šis unikalus reginys ir suteikė Beratui pravardę — <em>„tūkstančio langų miestas"</em> (alb. <em>Qyteti i Një Mije Dritareve</em>). Langai buvo tokie dideli, nes statybos metu apmokestinamos durys, bet ne langai — taigi gyventojai rado gudrų sprendimą.</p>
-                    <p>Kvartale gausu tradicinių albanų restoranų (me byrek, tavë kosi), kavinių ir rankdarbių parduotuvėlių. Pasivaikščiojimas akmeninėmis gatvelėmis saulėlydžio metu — vienas nepamirštamiausių Albanijos įspūdžių.</p>
+                    <p>Bovilla (alb. <em>Liqeni i Bovillës</em>) — dirbtinis rezervuaras Tiranės tiekiančioje kalnų tarpeklį. Ežeras įsikūręs Qafë-Shtamë perėjos papėdėje, apsuptas žalių kalvų ir dolomitinių uolų.</p>
+                    <p>Kelias į Bovillą eina per Zall-Herr kaimą ir siaurą tarpeklį — vaizdai čia patys nuostabiausi net ir pačioje kelionėje. Ežero krantuose galima pasivaikščioti, piknikuoti ir fotografuoti — infrastruktūros beveik nėra, todėl vieta nėra turizmo perkrauta.</p>
+                    <p>Bovilla taip pat žinoma kaip viena geriausių žvejybos vietų aplink Tiranę — vietiniai čia veši upėtakius. Vanduo yra skaidrus ir neaprastas turkio atspalvio.</p>
                   </div>
                 </div>
               </div>
+            </div>
+
+            <button class="bad-weather-btn" onclick="toggleBadWeather(this)">🌧️ Planas blogam orui — Tiranės muziejai ▼</button>
+            <div class="bad-weather-panel" hidden>
+              <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0.75rem">Jei lyja arba debesuota — Dajti ir Bovilla nuvils. Tada renkamės Tiranės kultūros programą:</p>
+              <ul class="timeline">
+                <li><span class="tl-time">10:00</span><span class="tl-text">🔴⚫ Skanderbego aikštė — centrinė sostinės aikštė, Et'hem Bey mečetė (1821 m.)</span></li>
+                <li><span class="tl-time">10:30</span><span class="tl-text">🏛️ Nacionalinis istorijos muziejus — ilirai, Osmanų era, komunizmas (~2 val.)</span></li>
+                <li><span class="tl-time">13:00</span><span class="tl-text">Pietūs Pazari i Ri (Naujasis turgus) — gatvės maistas, byrek, qofte</span></li>
+                <li><span class="tl-time">14:30</span><span class="tl-text">☢️ Bunk'Art 2 — komunizmo bunkerio muziejus po Vidaus reikalų ministerija</span></li>
+                <li><span class="tl-time">16:00</span><span class="tl-text">🎨 Tiranės šiuolaikinio meno galerija arba House of Leaves muziejus</span></li>
+                <li><span class="tl-time">18:00</span><span class="tl-text">Pasivaikščiojimas Blloku rajonu, vakarienė</span></li>
+              </ul>
             </div>
           </div>
         </div>
       </article>
 
       <!-- Day 2 -->
-      <article class="day-card aos" style="--day-accent: var(--accent)">
+      <article class="day-card aos" style="--day-accent: var(--teal)">
         <div class="day-card-header">
-          <div class="day-badge"><span class="day-emoji">🏙️</span><span class="day-num">2 diena</span></div>
+          <div class="day-badge"><span class="day-emoji">🏜️</span><span class="day-num">2 diena</span></div>
           <div class="day-meta">
             <h3>Lapkričio 1 · Sekmadienis</h3>
-            <p class="day-subtitle">Tirana + Krujė — sostinė ir nacionalinis herojus</p>
+            <p class="day-subtitle">Osum kanjonas + Berat — upės tarpeklis ir „tūkstančio langų miestas"</p>
           </div>
           <button class="day-toggle" aria-expanded="true">▲</button>
         </div>
         <div class="day-body">
           <div class="day-body-inner">
+            <div class="alert alert--teal">🏞️ <strong>Gamtos diena:</strong> Osum kanjonas — vienas dramatingiausių tarpeklių Albanijoje. Upė pjovė kelią per klinties uolas milijonus metų — sienos siekia iki 80 m aukščio. Po kanjo — UNESCO miestas Berat šalia.</div>
             <ul class="timeline">
-              <li><span class="tl-time">09:00</span><span class="tl-text">Pusryčiai Tiranoje — Çajupi kavinė ar viešbučio restoranas</span></li>
-              <li><span class="tl-time">10:00</span><span class="tl-text">🏛️ Skanderbego aikštė — Albanijos širdis, Et'hem Bey mečetė</span></li>
-              <li><span class="tl-time">10:30</span><span class="tl-text">Nacionalinis istorijos muziejus (Muzeu Historik Kombëtar) — komunizmo era, ilirai</span></li>
-              <li><span class="tl-time">12:00</span><span class="tl-text">🏰 Bunk'Art 2 — komunizmo laikotarpio bunkerio muziejus miesto centre</span></li>
-              <li><span class="tl-time">13:00</span><span class="tl-text">Pietūs Pazari i Ri (Naujasis turgus) — vietinis maistas, gatvės virtuvė</span></li>
-              <li><span class="tl-time">14:30</span><span class="tl-text">Išvažiavimas į Kruję (~30 min., ~30 km)</span></li>
-              <li><span class="tl-time">15:00</span><span class="tl-text">🏰 Krujės pilis — Skanderbego muziejus, panorama į Adrijos lygumą</span></li>
-              <li><span class="tl-time">16:00</span><span class="tl-text">Krujės turgavietė — tradiciniai albanų rankdarbiai, suvenyrais</span></li>
-              <li><span class="tl-time">17:00</span><span class="tl-text">Grįžimas į Tiranę</span></li>
-              <li><span class="tl-time">19:00</span><span class="tl-text">Vakarienė Blloku rajone — modernūs restoranai, albanų vynas 🍷</span></li>
-              <li><span class="tl-time">21:00</span><span class="tl-text">Pasivaikščiojimas Blloku rajone — barai, kavinės</span></li>
+              <li><span class="tl-time">08:00</span><span class="tl-text">Pusryčiai viešbutyje, ankstyvas išvykimas</span></li>
+              <li><span class="tl-time">08:30</span><span class="tl-text">🚗 Išvažiavimas į Osum kanjoną (~2 val., ~130 km pietuose)</span></li>
+              <li><span class="tl-time">10:30</span><span class="tl-text">🏜️ Osum kanjonas — žygis palei upę tarpekliu, uoliniai skardžiai iki 80 m</span></li>
+              <li><span class="tl-time">12:00</span><span class="tl-text">Piknikas prie upės arba pauza Çorovodë miestuke</span></li>
+              <li><span class="tl-time">13:00</span><span class="tl-text">🚗 Važiavimas į Beratą (~40 min.)</span></li>
+              <li><span class="tl-time">14:00</span><span class="tl-text">🌉 Gorica tiltas — senovinis akmeninis tiltas per Osum upę, pasivaikščiojimas pakrante</span></li>
+              <li><span class="tl-time">14:45</span><span class="tl-text">🥾 Žygis į Kalaja pilį (pėsčiomis) — akmenimis grįstas takas pro vynuogynus</span></li>
+              <li><span class="tl-time">16:00</span><span class="tl-text">Panoraminiai vaizdai nuo pilies sienų — Osum upė, Mangalem, Gorica</span></li>
+              <li><span class="tl-time">17:00</span><span class="tl-text">🚗 Išvažiavimas atgal į Tiranę (~2 val.)</span></li>
+              <li><span class="tl-time">19:30</span><span class="tl-text">Vakarienė Tiranoje — Oda restoranas ar Blloku rajonas 🍷</span></li>
             </ul>
             <div class="day-info-row">
-              <span class="info-chip">📏 Krujė ~30 km nuo Tiranės</span>
-              <span class="info-chip">🎟 Bunk'Art ~500 ALL (~5 €)</span>
-              <span class="info-chip">🎟 Muziejai ~200–500 ALL</span>
-              <span class="info-chip tip">💡 Blloku rajonas — geriausia vieta vakarienei Tiranoje</span>
-              <span class="info-chip tip">📸 Skanderbego aikštė graži vakare</span>
+              <span class="info-chip">📏 Osum ~130 km nuo Tiranės</span>
+              <span class="info-chip">📏 Berat ~120 km nuo Tiranės</span>
+              <span class="info-chip">⏱ Ilga diena — ~400 km važiavimas</span>
+              <span class="info-chip tip">💡 Atsineškite vandens ir užkandžių — Osum apylinkėse mažai kavinių</span>
+              <span class="info-chip tip">🥾 Batai su gerais padais — uolėti takai prie upės</span>
             </div>
             <div class="spots-grid mt-2">
               <div class="spot-card">
-                <span class="spot-emoji">🔴⚫</span>
-                <div class="spot-name">Skanderbego aikštė</div>
-                <div class="spot-desc">Albanijos centrinis simbolis. Didžiulė aikštė su Skanderbego statula, Et'hem Bey mečete ir Nacionaliniu muziejumi.</div>
+                <span class="spot-emoji">🏜️</span>
+                <div class="spot-name">Osum kanjonas</div>
+                <div class="spot-desc">Iki 80 m aukščio klinties sienos, turkio vanduo — vienas įspūdingiausių tarpeklių Pietryčių Europoje.</div>
                 <button class="spot-more-btn" onclick="toggleSpotInfo(this)">Skaityti daugiau ▼</button>
                 <div class="spot-info" hidden>
+                  <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Osumi_canyon.jpg/800px-Osumi_canyon.jpg" alt="Osum kanjonas" loading="lazy" onerror="this.style.display='none'">
+                  <div class="spot-history">
+                    <p>Osum kanjonas (alb. <em>Kanioni i Osumit</em>) — vienas didžiausių ir dramatingiausių tarpeklių Albanijoje. Osum upė milijonus metų pjovė kelią per klinties uolieną, sukurdama iki 80 m aukščio sienas ir vingiuotą, 26 km ilgio tarpeklį.</p>
+                    <p>Vanduo kanjone yra nepaprastos turkio–žalios spalvos dėl kalkakmenio mineralų. Rugpjūčio mėnesį tarpekliu plūsta plaustuose — tai viena populiariausių vandens turizmo veiklų Albanijoje. Lapkritį — pėsčiomis palei upę arba nuo viršutinio kranto.</p>
+                    <p>Kanjonas netoli Çorovodë miestuko — verta stabtelti ir atsigerti vietinę kajmaklu qumësht (grietinėlę su pienu) tradicinėje kavinėje prieš grįžtant į Beratą.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="spot-card">
+                <span class="spot-emoji">🌉</span>
+                <div class="spot-name">Berat + Gorica tiltas</div>
+                <div class="spot-desc">UNESCO miestas su panoraminiais vaizdais nuo pilies — upės slėnis, senovinis tiltas, baltų namų mozaika.</div>
+                <button class="spot-more-btn" onclick="toggleSpotInfo(this)">Skaityti daugiau ▼</button>
+                <div class="spot-info" hidden>
+                  <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Berat_castle_Albania.jpg/800px-Berat_castle_Albania.jpg" alt="Beratos pilis" loading="lazy" onerror="this.style.display='none'">
+                  <div class="spot-history">
+                    <p>Berat — UNESCO Pasaulio paveldo miestas, žinomas kaip „tūkstančio langų miestas". Osmanų laikotarpio namai Mangalem kvartale pasižymi didžiuliais langais — statybos metu apmokestinamos durys, bet ne langai, tad gyventojai gudriai išsprendė problemą.</p>
+                    <p>Gorica tiltas — senovinis akmeninis tiltas per Osum upę, jungiantis Mangalem (musulmonišką) ir Gorica (krikščionišką) kvartalus. Pasivaikščiojimas per tiltą saulėlydžio metu ir žvilgsnis į pilį virš miesto — vienas gražiausių momentų Albanijoje.</p>
+                    <p>Žygis į Kalaja pilį pėsčiomis užtrunka ~30–40 min. ir eina pro vynuogynus bei senas kapines. Pilis veikia kaip gyvas kvartalas — viduje yra kavinės, bažnyčios ir šeimos namai.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="bad-weather-btn" onclick="toggleBadWeather(this)">🌧️ Planas blogam orui — Berat muziejai ir Krujė ▼</button>
+            <div class="bad-weather-panel" hidden>
+              <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0.75rem">Jei lyja — Osum kanjone slidžios uolos ir prastai matosi. Tada renkamės kultūros maršrutą:</p>
+              <ul class="timeline">
+                <li><span class="tl-time">09:00</span><span class="tl-text">🚗 Išvažiavimas į Beratą (~2 val., ~120 km)</span></li>
+                <li><span class="tl-time">11:00</span><span class="tl-text">🏰 Beratos pilis (Kalaja) — IV a. pr. Kr. pilis su gyvuojančiu kaimo viduje</span></li>
+                <li><span class="tl-time">12:00</span><span class="tl-text">⛪ Onufri muziejus — unikalios ikonų freskos XV–XVI a.</span></li>
+                <li><span class="tl-time">13:00</span><span class="tl-text">Pietūs senamiestyje — tavë kosi (aviena su jogurtu) ir vietinis vynas</span></li>
+                <li><span class="tl-time">14:30</span><span class="tl-text">🏘️ Mangalem ir Gorica kvartai — akmeninės gatvelės, suvenyrai</span></li>
+                <li><span class="tl-time">16:00</span><span class="tl-text">🚗 Grįžimas į Tiranę; sustojimas Krujėje (~30 min nuo Tiranės)</span></li>
+                <li><span class="tl-time">17:30</span><span class="tl-text">⚔️ Krujės pilis — Skanderbego muziejus, panorama į Adrijos lygumą</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Day 3 -->
                   <img class="spot-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Skanderbeg_Square_in_Tirana.jpg/800px-Skanderbeg_Square_in_Tirana.jpg" alt="Skanderbego aikštė Tiranoje" loading="lazy" onerror="this.style.display='none'">
                   <div class="spot-history">
                     <p>Skanderbego aikštė (alb. <em>Sheshi Skënderbej</em>) — Albanijos sostinės Tiranės širdis ir didžiausia pėsčiųjų aikštė Balkanuose. Aikštė pavadinta Albanijos nacionaliniu didvyriu — Gjergj Kastrioti Skanderbegas (1405–1468), kuris XV a. vadovavo albanų pasipriešinimui prieš Osmanų imperiją.</p>
@@ -1230,27 +1315,29 @@
       </article>
 
       <!-- Day 3 -->
-      <article class="day-card aos" style="--day-accent: var(--teal)">
+      <article class="day-card aos" style="--day-accent: var(--blue)">
         <div class="day-card-header">
           <div class="day-badge"><span class="day-emoji">🌊✈️</span><span class="day-num">3 diena</span></div>
           <div class="day-meta">
             <h3>Lapkričio 2 · Pirmadienis</h3>
-            <p class="day-subtitle">Durrës + skrydis namo</p>
+            <p class="day-subtitle">Rodono kyšulys + Durrës pakrantė + skrydis namo</p>
           </div>
           <button class="day-toggle" aria-expanded="true">▲</button>
         </div>
         <div class="day-body">
           <div class="day-body-inner">
-            <div class="alert alert--danger">🕔 <strong>SVARBU:</strong> Skrydis išvyksta 19:05 — oro uoste reikia būti likus 2 val., t.y. iki 17:05. Automobilio grąžinimas iki 16:30. Iš Durrës išvažiuokite ne vėliau kaip 15:30!</div>
+            <div class="alert alert--danger">🕔 <strong>SVARBU:</strong> Skrydis išvyksta 19:05 — oro uoste reikia būti iki 17:05. Automobilio grąžinimas iki 16:30. Iš Durrës išvažiuokite ne vėliau kaip 15:30!</div>
+            <div class="alert alert--teal">🌊 <strong>Gamtos diena:</strong> Rodono kyšulys — atokus pusiasalis su XIII a. pilies griuvėsiais ant uolų viršūnės, laukinis Adrijos jūros krantas ir beveik jokių turistų.</div>
             <ul class="timeline">
               <li><span class="tl-time">09:00</span><span class="tl-text">Pusryčiai viešbutyje, bagažo susipakovimas</span></li>
               <li><span class="tl-time">09:30</span><span class="tl-text">Check-out, bagažas į automobilį</span></li>
-              <li><span class="tl-time">10:00</span><span class="tl-text">Išvažiavimas į Durrës (~30 min., ~35 km)</span></li>
-              <li><span class="tl-time">10:30</span><span class="tl-text">🏛️ Durrës amfiteatras — II a. Romos imperijos amfiteatras, vienas didžiausių Balkanuose</span></li>
-              <li><span class="tl-time">11:30</span><span class="tl-text">Durrës paplūdimys — Adrijos jūra, promenada</span></li>
-              <li><span class="tl-time">12:30</span><span class="tl-text">Pietūs prie jūros — žuvis, jūros gėrybės 🐟</span></li>
-              <li><span class="tl-time">14:00</span><span class="tl-text">Durrës miesto centras — Venecijos bokštas, turgus</span></li>
-              <li><span class="tl-time">15:30</span><span class="tl-text">Išvažiavimas atgal į Tiranę / oro uostą</span></li>
+              <li><span class="tl-time">10:00</span><span class="tl-text">🚗 Išvažiavimas į Rodono kyšulį (~45 min., ~50 km šiaurės vakare)</span></li>
+              <li><span class="tl-time">11:00</span><span class="tl-text">🏰 Rodono pusiasalis — XIII a. Venecijos pilies griuvėsiai ant uolų, laukinis krantas</span></li>
+              <li><span class="tl-time">12:00</span><span class="tl-text">🌊 Pasivaikščiojimas laukiniu Adrijos pakrančiu — žvyro paplūdimiai, bangos, ramybė</span></li>
+              <li><span class="tl-time">13:00</span><span class="tl-text">🚗 Važiavimas į Durrës (~30 min.)</span></li>
+              <li><span class="tl-time">13:30</span><span class="tl-text">Pietūs prie jūros — žuvis, jūros gėrybės, Adrijos vaizdas 🐟</span></li>
+              <li><span class="tl-time">15:00</span><span class="tl-text">Pasivaikščiojimas Durrës promenada, paplūdimys</span></li>
+              <li><span class="tl-time">15:30</span><span class="tl-text">🚗 Išvažiavimas į TIA oro uostą (~30 min.)</span></li>
               <li><span class="tl-time">16:30</span><span class="tl-text">Automobilio grąžinimas TIA oro uoste</span></li>
               <li><span class="tl-time">17:05</span><span class="tl-text">Registracija ir saugumo patikrinimas</span></li>
               <li><span class="tl-time">19:05</span><span class="tl-text">✈️ Išskridimas · FR 6810 · TIA → WAW</span></li>
@@ -1259,13 +1346,26 @@
               <li><span class="tl-time">~02:00</span><span class="tl-text">Atvykimas į Kauną 🏠</span></li>
             </ul>
             <div class="day-info-row">
+              <span class="info-chip">📏 Rodonas ~50 km nuo Tiranės</span>
               <span class="info-chip">📏 Durrës ~35 km nuo Tiranės</span>
-              <span class="info-chip">🎟 Amfiteatras ~200 ALL (~2 €)</span>
-              <span class="info-chip">🌊 Adrijos jūros temperatūra lapkritį ~18°C</span>
-              <span class="info-chip tip">💡 Pietūs prie jūros — žuvis nepaprastai pigi ir šviežia</span>
+              <span class="info-chip">🌊 Adrijos vanduo lapkritį ~18°C</span>
+              <span class="info-chip tip">💡 Rodone beveik nėra kavinių — atsineškite užkandžių</span>
               <span class="info-chip warn">⚠️ Grįžimas į Kauną ~02:00 nakties</span>
             </div>
             <div class="spots-grid mt-2">
+              <div class="spot-card">
+                <span class="spot-emoji">🏰🌊</span>
+                <div class="spot-name">Rodono kyšulys</div>
+                <div class="spot-desc">Atokus pusiasalis su Venecijos pilies griuvėsiais — laukinis Adrijos krantas, jokių turistų, stulbinantys vaizdai.</div>
+                <button class="spot-more-btn" onclick="toggleSpotInfo(this)">Skaityti daugiau ▼</button>
+                <div class="spot-info" hidden>
+                  <div class="spot-history">
+                    <p>Rodono kyšulys (alb. <em>Kepi i Rodonit</em>) — siauras pusiasalis Adrijos jūroje, ~50 km šiaurės vakaruose nuo Tiranės. Čia stovi XIII a. Venecijos respublikos pastatytos pilies griuvėsiai ant žemos uolos viršūnės, apsuptos jūros.</p>
+                    <p>Pasak legendos, šioje pilies koplyčioje XVII a. laidotas pats Gjergj Kastrioti Skanderbegas — tačiau istoriškai tai ginčytina. Nepaisant to, vieta išlieka svarbi albanų tautos atminčiai ir laikoma piligrimystės kryptimi.</p>
+                    <p>Kelias į kyšulį eina per laukines pievų ir krūmynų plotus — nei parduotuvių, nei kavinių. Krantas žvirgždo, bangos mušasi į uolas. Tai viena tų albanų vietų, kur dar galima pasijusti pionieriu.</p>
+                  </div>
+                </div>
+              </div>
               <div class="spot-card">
                 <span class="spot-emoji">🏛️</span>
                 <div class="spot-name">Durrës amfiteatras</div>
@@ -1294,6 +1394,18 @@
                   </div>
                 </div>
               </div>
+            </div>
+
+            <button class="bad-weather-btn" onclick="toggleBadWeather(this)">🌧️ Planas blogam orui — Durrës muziejai ▼</button>
+            <div class="bad-weather-panel" hidden>
+              <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0.75rem">Jei lyja — paplūdimys ir Rodonas bus nykūs. Tada visa diena Durrëse su stogu virš galvos:</p>
+              <ul class="timeline">
+                <li><span class="tl-time">10:30</span><span class="tl-text">🏛️ Durrës amfiteatras — II a. Romos imperijos amfiteatras, vienas didžiausių Balkanuose (~1 val.)</span></li>
+                <li><span class="tl-time">11:30</span><span class="tl-text">🏺 Durrës Archeologinis muziejus — ilirai, graikai, romėnai</span></li>
+                <li><span class="tl-time">13:00</span><span class="tl-text">Pietūs restorane — šilta sriuba, žuvis, vietinis vynas</span></li>
+                <li><span class="tl-time">14:00</span><span class="tl-text">🗼 Venecijos bokštas ir Durrës miesto centras — apsipirkimas, kavinės</span></li>
+                <li><span class="tl-time">15:30</span><span class="tl-text">🚗 Išvažiavimas į TIA oro uostą</span></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -1516,6 +1628,22 @@
   }
   window.toggleSpotInfo = toggleSpotInfo;
 
+  /* ── Bad weather toggle ───────────────────────────────────────── */
+  function toggleBadWeather(btn) {
+    const panel = btn.nextElementSibling;
+    const open = !panel.hidden;
+    panel.hidden = open;
+    const label = open ? '🌧️ Planas blogam orui' : '☀️ Uždaryti blogą oro planą';
+    btn.textContent = open
+      ? btn.textContent.replace('▲', '▼').replace('☀️ Uždaryti blogą oro planą', btn.dataset.label || btn.textContent.replace('▲','▼'))
+      : btn.textContent.replace('▼', '▲');
+    if (!open) {
+      const body = btn.closest('.day-body');
+      if (body) body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  }
+  window.toggleBadWeather = toggleBadWeather;
+
   /* ── Leaflet map ──────────────────────────────────────────────── */
   const map = L.map('trip-map', { zoomControl: true, scrollWheelZoom: false }).setView([41.15, 19.85], 8);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -1531,14 +1659,13 @@
   });
 
   const spots = [
-    { lat: 41.3305, lng: 19.8313, title: 'Tirana', sub: 'Sostinė · viešbutis, muziejai', day: '0 – 3 dienos', color: '#c9493a' },
-    { lat: 41.3303, lng: 19.8338, title: 'Skanderbego aikštė', sub: 'Albanijos širdis', day: '2 diena', color: '#c9493a' },
-    { lat: 41.3255, lng: 19.8219, title: "Bunk'Art 2", sub: 'Komunizmo bunkerio muziejus', day: '2 diena', color: '#c9493a' },
-    { lat: 40.7058, lng: 19.9522, title: 'Berat', sub: 'UNESCO · tūkstančio langų miestas', day: '1 diena', color: '#c9a84c' },
-    { lat: 40.7090, lng: 19.9458, title: 'Beratos pilis (Kalaja)', sub: 'IV a. pr. Kr. pilis', day: '1 diena', color: '#c9a84c' },
-    { lat: 41.5089, lng: 19.7917, title: 'Krujės pilis', sub: 'Skanderbego rezidencija', day: '2 diena', color: '#5a9c6a' },
-    { lat: 41.3233, lng: 19.4413, title: 'Durrës amfiteatras', sub: 'II a. Romos imperija', day: '3 diena', color: '#3a8c7c' },
-    { lat: 41.3100, lng: 19.4350, title: 'Durrës paplūdimys', sub: 'Adrijos jūra', day: '3 diena', color: '#3a8c7c' },
+    { lat: 41.3305, lng: 19.8313, title: 'Tirana', sub: 'Sostinė · viešbutis, bazė', day: '0 – 3 dienos', color: '#c9493a' },
+    { lat: 41.3755, lng: 19.8700, title: 'Dajti kalnas', sub: '🚡 Lynų kelias + žygiai · 1613 m', day: '1 diena', color: '#5a9c6a' },
+    { lat: 41.4380, lng: 19.9450, title: 'Bovilla ežeras', sub: '🏞️ Kalnų rezervuaras', day: '1 diena', color: '#5a9c6a' },
+    { lat: 40.5300, lng: 20.1900, title: 'Osum kanjonas', sub: '🏜️ 80 m uolų sienos, turkio upė', day: '2 diena', color: '#c9a84c' },
+    { lat: 40.7058, lng: 19.9522, title: 'Berat', sub: '🌉 UNESCO miestas + Gorica tiltas', day: '2 diena', color: '#c9a84c' },
+    { lat: 41.5870, lng: 19.4700, title: 'Rodono kyšulys', sub: '🏰🌊 XIII a. pilies griuvėsiai, laukinis krantas', day: '3 diena', color: '#4a6fa5' },
+    { lat: 41.3233, lng: 19.4413, title: 'Durrës', sub: '🌊 Adrijos pakrantė, pietūs prie jūros', day: '3 diena', color: '#4a6fa5' },
   ];
 
   spots.forEach(s => {
@@ -1549,13 +1676,16 @@
 
   const routeCoords = [
     [41.3305, 19.8313],
+    [41.3755, 19.8700],
+    [41.4380, 19.9450],
+    [41.3305, 19.8313],
+    [40.5300, 20.1900],
     [40.7058, 19.9522],
     [41.3305, 19.8313],
-    [41.5089, 19.7917],
-    [41.3305, 19.8313],
+    [41.5870, 19.4700],
     [41.3233, 19.4413],
   ];
-  L.polyline(routeCoords, { color: '#c9a84c', weight: 2, opacity: 0.5, dashArray: '6 6' }).addTo(map);
+  L.polyline(routeCoords, { color: '#5a9c6a', weight: 2, opacity: 0.5, dashArray: '6 6' }).addTo(map);
 </script>
 </body>
 </html>
