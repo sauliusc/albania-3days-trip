@@ -469,6 +469,72 @@
       padding: 2rem;
       box-shadow: var(--shadow);
     }
+    .car-section-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin: 1.5rem 0 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .car-rental-grid {
+      display: grid;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    @media (min-width: 560px) { .car-rental-grid { grid-template-columns: repeat(3, 1fr); } }
+    .car-rental-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      transition: border-color 0.2s;
+    }
+    .car-rental-item.recommended { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(201,168,76,0.2); }
+    .car-rental-badge {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 0.1rem;
+    }
+    .car-rental-name { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+    .car-rental-price { font-size: 0.85rem; color: var(--accent); font-weight: 600; }
+    .car-rental-note { font-size: 0.75rem; color: var(--text-muted); }
+    .car-type-grid {
+      display: grid;
+      gap: 0.75rem;
+    }
+    @media (min-width: 560px) { .car-type-grid { grid-template-columns: 1fr 1fr; } }
+    .car-type-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .car-type-card.best { border-color: var(--green); box-shadow: 0 0 0 1px rgba(90,156,106,0.2); }
+    .car-type-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .car-type-name { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+    .car-type-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+    .car-type-verdict {
+      display: inline-block;
+      margin-top: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 50px;
+    }
+    .car-type-verdict.good { background: var(--green-dim); color: #7ec99a; }
+    .car-type-verdict.ok { background: var(--gold-dim); color: #c4a060; }
+    .car-type-verdict.bad { background: var(--danger-dim); color: #d48070; }
     .car-card-title {
       font-family: var(--font-display);
       font-size: 1.3rem;
@@ -1038,21 +1104,83 @@
 
     <div class="car-card aos mt-2">
       <div class="car-card-title">🚗 Automobilio nuoma Albanijoje</div>
-      <div class="car-card-sub">Rekomenduojama nuomotis Tiranoje — geriausios kainos ir pasirinkimas. 4 žmonėms tinka kompaktinis arba vidutinis automobilis.</div>
+      <div class="car-card-sub">Pasiėmimas ir grąžinimas TIA oro uoste · 3 dienos · 4 žmonės</div>
       <div class="car-info-grid">
         <div class="car-info-item"><span class="car-info-label">Pasiėmimas</span><span class="car-info-value">TIA oro uostas</span></div>
         <div class="car-info-item"><span class="car-info-label">Grąžinimas</span><span class="car-info-value">TIA oro uostas</span></div>
         <div class="car-info-item"><span class="car-info-label">Trukmė</span><span class="car-info-value">3 dienos</span></div>
-        <div class="car-info-item"><span class="car-info-label">Apytikslė kaina</span><span class="car-info-value">30–50 € / dienai</span></div>
-        <div class="car-info-item"><span class="car-info-label">Rekomenduojama</span><span class="car-info-value">Rentalcars / Discovercars</span></div>
+        <div class="car-info-item"><span class="car-info-label">Apytikslė kaina</span><span class="car-info-value">30–60 € / dienai</span></div>
         <div class="car-info-item"><span class="car-info-label">Vairavimas</span><span class="car-info-value">Dešinioji pusė 🇦🇱</span></div>
+        <div class="car-info-item"><span class="car-info-label">Draudimas</span><span class="car-info-value">Full SCDW rekomenduojama</span></div>
       </div>
+
+      <div class="car-section-title">Geriausios vietos išsinuomoti pagal kainą</div>
+      <div class="car-rental-grid">
+        <div class="car-rental-item recommended">
+          <div class="car-rental-badge">⭐ Geriausia kaina</div>
+          <div class="car-rental-name">Discovercars.com</div>
+          <div class="car-rental-price">nuo ~25 € / dienai</div>
+          <div class="car-rental-note">Palyginimo platforma — rodo vietinių ir tarptautinių nuomotojų kainas. Dažniausiai pigiausias variantas TIA.</div>
+        </div>
+        <div class="car-rental-item">
+          <div class="car-rental-name">Rentalcars.com</div>
+          <div class="car-rental-price">nuo ~30 € / dienai</div>
+          <div class="car-rental-note">Booking.com grupė. Platus pasirinkimas, galima mokėti vėliau. Geras klientų aptarnavimas.</div>
+        </div>
+        <div class="car-rental-item">
+          <div class="car-rental-name">Arber Rent a Car 🇦🇱</div>
+          <div class="car-rental-price">nuo ~20 € / dienai</div>
+          <div class="car-rental-note">Vietinė albanų įmonė — pigiausia, bet draudimas gali būti ribotas. Rezervuoti iš anksto el. paštu.</div>
+        </div>
+      </div>
+      <div class="alert alert--warning" style="margin-top:0.75rem">
+        ⚠️ <strong>Svarbu:</strong> Albanijoje rekomenduojamas pilnas draudimas (Full SCDW/CDW) — keliai prie Bovilla ežero ir Rodono kyšulio yra neįrengti. Pigiausi pasiūlymai dažnai turi aukštą draudimo franšizę (~500–1000 €).
+      </div>
+
+      <div class="car-section-title">Rekomenduojamas automobilio tipas</div>
+      <div class="car-type-grid">
+        <div class="car-type-card best">
+          <div class="car-type-icon">🚙</div>
+          <div>
+            <div class="car-type-name">Kompaktinis SUV</div>
+            <div class="car-type-desc">Dacia Duster, VW T-Roc, Skoda Karoq ar panašus. Aukštesnis klirensas (~18–20 cm) — būtinas Bovilla ežero žvyrkeliui ir Rodono kyšulio neįrengtam keliui. 4 žmonėms ir lagaminams pakankama vietos.</div>
+            <span class="car-type-verdict good">✓ Rekomenduojama</span>
+          </div>
+        </div>
+        <div class="car-type-card">
+          <div class="car-type-icon">🚗</div>
+          <div>
+            <div class="car-type-name">Vidutinis sedanas / hečbekas</div>
+            <div class="car-type-desc">VW Golf, Toyota Corolla ar panašus. Tinka Tiranai, Beratui ir Durrësui — asfaltuoti keliai. Tačiau Bovilla ir Rodonas gali būti problemiški — žemas klirensas (~14 cm).</div>
+            <span class="car-type-verdict ok">~ Tinka geram orui</span>
+          </div>
+        </div>
+        <div class="car-type-card">
+          <div class="car-type-icon">🚘</div>
+          <div>
+            <div class="car-type-name">Mažas miesto automobilis</div>
+            <div class="car-type-desc">Fiat 500, VW Polo ar panašus. Tinka tik miesto programai. Kanjono ir kyšulio keliai — per daug neįrengtų. Per mažas 4 žmonėms su bagažu.</div>
+            <span class="car-type-verdict bad">✗ Nerekomenduojama</span>
+          </div>
+        </div>
+        <div class="car-type-card">
+          <div class="car-type-icon">🛻</div>
+          <div>
+            <div class="car-type-name">Pilnas off-road (4×4)</div>
+            <div class="car-type-desc">Toyota Land Cruiser ar panašus. Puikus pravažumas, bet brangus (~60–100 € / dienai) ir perteklinis — Albanijoje tikros off-road trasų nereikia, pakanka aukštesnio klirenso.</div>
+            <span class="car-type-verdict ok">~ Nebūtina</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-section-title">Praktiniai patarimai</div>
       <div class="car-tips">
         <span class="car-tip-chip">🪪 Reikia tarptautinio vairuotojo pažymėjimo</span>
-        <span class="car-tip-chip">💳 Depozitas kredito kortele</span>
-        <span class="car-tip-chip">⛽ Kuras pigesnis nei Lietuvoje (~1,3 €/L)</span>
-        <span class="car-tip-chip">🛣️ Keliai tarp miestų pakankamos kokybės</span>
-        <span class="car-tip-chip">📵 Google Maps veikia puikiai</span>
+        <span class="car-tip-chip">💳 Depozitas tik kredito kortele (ne debetine!)</span>
+        <span class="car-tip-chip">⛽ Kuras ~1,30 €/L — pigiau nei Lietuvoje</span>
+        <span class="car-tip-chip">📸 Nufotografuokite automobilį prieš išvažiuojant</span>
+        <span class="car-tip-chip">📵 Google Maps veikia puikiai visoje Albanijoje</span>
+        <span class="car-tip-chip">🛣️ Keliai tarp miestų — geri. Prie Bovilla / Rodonas — žvyrkeliai</span>
       </div>
     </div>
   </div>
