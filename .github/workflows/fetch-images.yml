@@ -1,0 +1,69 @@
+name: Fetch and commit images
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download images from Wikimedia Commons
+        run: |
+          python3 << 'PYEOF'
+          import urllib.request, os, json
+
+          os.makedirs('images', exist_ok=True)
+          UA = 'albania-trip-page/1.0 (https://github.com/sauliusc/albania-3days-trip; saulius@cebanauskai.lt)'
+
+          files = [
+            ('images/dajti.jpg',               'Dajti_Ekspress.jpg'),
+            ('images/bovilla.jpg',             'Bovilla_Reservoir.jpg'),
+            ('images/skanderbeg.jpg',          'Tirana_Skanderbeg_Square.jpg'),
+            ('images/dajti-view.jpg',          'Tirana_view_from_Dajti_mountain.jpg'),
+            ('images/osumi.jpg',               'Osumi_Canyons_-_Outside_Corovoda_-_Albania_-_03_%2842486434472%29.jpg'),
+            ('images/berat.jpg',               'Berat%2C_Mangalem_quarter%2C_Albania.JPG'),
+            ('images/kruja.jpg',               'Kruja_Castle.JPG'),
+            ('images/cape-rodon.jpg',          'Cape_of_Rodon_%28Cape_of_Skanderbeg%29.jpg'),
+            ('images/durres-amphitheater.jpg', 'Durr%C3%ABs._Anfiteatro_1.JPG'),
+            ('images/durres-beach.jpg',        'Durr%C3%ABs_Plazh_-_Rruga_Pavar%C3%ABsia.jpg'),
+          ]
+
+          ok = 0
+          for local_path, fname in files:
+            api = f'https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iiprop=url&iiurlwidth=640&titles=File:{fname}&format=json'
+            try:
+              req = urllib.request.Request(api, headers={'User-Agent': UA})
+              with urllib.request.urlopen(req, timeout=30) as r:
+                data = json.loads(r.read())
+              pages = data['query']['pages']
+              thumb_url = next(iter(pages.values()))['imageinfo'][0]['thumburl']
+              req2 = urllib.request.Request(thumb_url, headers={'User-Agent': UA, 'Referer': 'https://commons.wikimedia.org/'})
+              with urllib.request.urlopen(req2, timeout=30) as r2, open(local_path, 'wb') as f:
+                content = r2.read()
+                f.write(content)
+              print(f'OK {local_path} ({len(content):,} bytes)')
+              ok += 1
+            except Exception as e:
+              print(f'FAIL {local_path}: {e}')
+
+          print(f'Done: {ok}/{len(files)} images')
+          PYEOF
+
+      - name: Commit images to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add images/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: atnaujinti nuotraukas iš Wikimedia Commons"
+            git push origin main
+          fi
