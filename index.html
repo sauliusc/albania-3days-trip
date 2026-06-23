@@ -786,7 +786,57 @@
       object-fit: cover;
       height: 160px;
       display: block;
+      cursor: zoom-in;
+      transition: opacity 0.15s;
     }
+    .spot-thumb:hover { opacity: 0.88; }
+
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      animation: lb-fade 0.18s ease;
+    }
+    #lightbox.open { display: flex; }
+    @keyframes lb-fade { from { opacity: 0; } to { opacity: 1; } }
+    #lightbox img {
+      max-width: min(92vw, 1000px);
+      max-height: 90dvh;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 8px 60px rgba(0,0,0,0.8);
+      object-fit: contain;
+      animation: lb-scale 0.2s ease;
+    }
+    @keyframes lb-scale { from { transform: scale(0.93); } to { transform: scale(1); } }
+    #lightbox-caption {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    #lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.25rem 0.5rem;
+    }
+    #lightbox-close:hover { color: #fff; }
     .spot-photo {
       width: 100%;
       border-radius: var(--radius-md);
@@ -1825,6 +1875,42 @@
     [41.3233, 19.4413],
   ];
   L.polyline(routeCoords, { color: '#5a9c6a', weight: 2, opacity: 0.5, dashArray: '6 6' }).addTo(map);
+</script>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Nuotrauka">
+  <button id="lightbox-close" aria-label="Uždaryti">×</button>
+  <img id="lightbox-img" src="" alt="">
+  <div id="lightbox-caption"></div>
+</div>
+
+<script>
+  (function() {
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbCap = document.getElementById('lightbox-caption');
+
+    function open(src, alt) {
+      lbImg.src = src;
+      lbImg.alt = alt;
+      lbCap.textContent = alt;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      lbImg.src = '';
+    }
+
+    document.querySelectorAll('img.spot-thumb').forEach(img => {
+      img.addEventListener('click', () => open(img.src, img.alt));
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', e => { e.stopPropagation(); close(); });
+    lb.addEventListener('click', close);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  })();
 </script>
 </body>
 </html>
